@@ -39,7 +39,17 @@ unset GREET
 * ; in the command should separate commands like in bash
 * ’ and " should work like in bash except for multiline commands
 * Redirections < > “>>” should work like in bash except for file descriptor aggregation
+```
+command > file : save result into file(create file if not exist)
+command >> file : add result into file(create file if not exist)
+command < file : give file data to command
+```
+for more info [https://putaindecode.io/articles/maitriser-les-redirections-shell/](https://putaindecode.io/articles/maitriser-les-redirections-shell/)
 * Pipes | should work like in bash
 * Environment variables ($ followed by characters) should work like in bash
 * $? should work like in bash
+```
+It contains the exit status code of last program.
+echo $? 
+```
 * ctrl-C, ctrl-D and ctrl-\ should have the same result as in bash
