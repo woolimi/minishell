@@ -1,5 +1,5 @@
 # minishell
-
+practice branch
 ## Allowed functions
 ```
 malloc, free, write, open, read, close, fork, wait,
