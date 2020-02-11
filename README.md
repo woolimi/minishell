@@ -53,3 +53,8 @@ It contains the exit status code of last program.
 echo $? 
 ```
 * ctrl-C, ctrl-D and ctrl-\ should have the same result as in bash
+```
+ctrl-C : exit programe with interrupt signal.
+ctrl-D : EOF
+ctrl-\ : generates the QUIT signal. Generally, that signal causes a program to terminate and dump core
+```
