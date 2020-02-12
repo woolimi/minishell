@@ -3,17 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:35:30 by froussel         ###   ########.fr       */
+/*   Updated: 2020/02/12 20:33:09 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main()
+int	main(int ac, char **av, char **env)
 {
-	printf('lol');
 	return(0);
 }
