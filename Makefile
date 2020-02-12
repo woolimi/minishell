@@ -1,6 +1,6 @@
-SRCS_minishell = srcs/ \
+SRCS_minishell = srcs/main.c
 
-SRCS_libft = libft/ft_strlen.c \
+SRCS_libft =
 
 SRCS = ${SRCS_minishell} ${SRCS_libft}
 
