@@ -1,18 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memset.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wpark <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/12 20:33:09 by wpark            ###   ########.fr       */
+/*   Created: 2019/10/07 11:18:25 by wpark             #+#    #+#             */
+/*   Updated: 2019/10/07 14:32:20 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int ac, char **av, char **env)
+void	*ft_memset(void *b, int c, size_t len)
 {
-	return(0);
+	unsigned char	*ptr;
+	unsigned char	tmp_c;
+
+	if (b == 0)
+		return (0);
+	ptr = (unsigned char*)b;
+	tmp_c = (unsigned char)c;
+	while (len--)
+		*ptr++ = tmp_c;
+	return (b);
 }

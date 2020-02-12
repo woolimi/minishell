@@ -1,18 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wpark <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/12 20:33:09 by wpark            ###   ########.fr       */
+/*   Created: 2019/10/08 12:34:43 by wpark             #+#    #+#             */
+/*   Updated: 2019/10/11 12:30:39 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int ac, char **av, char **env)
+/*
+** Return
+** not found c  : NULL
+** if c is '\0' : '\0'
+*/
+
+char	*ft_strchr(const char *s, int c)
 {
-	return(0);
+	char	*ret;
+
+	ret = (char*)s;
+	while (*ret != c)
+	{
+		if (*ret == '\0')
+			return (0);
+		ret++;
+	}
+	return (ret);
 }

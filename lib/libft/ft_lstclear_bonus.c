@@ -1,18 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstclear.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wpark <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/12 20:33:09 by wpark            ###   ########.fr       */
+/*   Created: 2019/10/11 11:11:21 by wpark             #+#    #+#             */
+/*   Updated: 2019/10/11 11:11:22 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int ac, char **av, char **env)
+void	ft_lstclear(t_list **lst, void (*del)(void*))
 {
-	return(0);
+	t_list	*cur;
+	t_list	*nxt;
+
+	if (lst && *lst && del)
+	{
+		cur = *lst;
+		while (cur)
+		{
+			nxt = cur->next;
+			ft_lstdelone(cur, del);
+			cur = nxt;
+		}
+		*lst = 0;
+	}
 }

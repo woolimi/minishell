@@ -1,18 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: wpark <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/12 20:33:09 by wpark            ###   ########.fr       */
+/*   Created: 2019/10/11 10:31:38 by wpark             #+#    #+#             */
+/*   Updated: 2019/10/11 10:32:04 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main(int ac, char **av, char **env)
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	return(0);
+	unsigned char	*ps;
+	unsigned int	i;
+
+	ps = (unsigned char*)s;
+	i = 0;
+	while (i < n)
+	{
+		if (ps[i] == (unsigned char)c)
+			return (ps + i);
+		i++;
+	}
+	return (0);
 }
