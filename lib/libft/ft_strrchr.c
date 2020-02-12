@@ -1,19 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strrchr.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:35:30 by froussel         ###   ########.fr       */
+/*   Created: 2019/10/08 12:36:15 by wpark             #+#    #+#             */
+/*   Updated: 2019/10/08 13:19:37 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main()
+char	*ft_strrchr(const char *s, int c)
 {
-	printf('lol');
-	return(0);
+	char	*start;
+	char	*cur;
+
+	start = (char*)s;
+	cur = start;
+	while (*cur != '\0')
+		cur++;
+	while (cur >= start)
+	{
+		if (*cur == (char)c)
+			return (cur);
+		cur--;
+	}
+	return (0);
 }

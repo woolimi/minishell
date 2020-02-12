@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_lstadd_front.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:35:30 by froussel         ###   ########.fr       */
+/*   Created: 2019/10/11 11:10:42 by wpark             #+#    #+#             */
+/*   Updated: 2019/10/11 11:14:36 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main()
+void	ft_lstadd_front(t_list **alst, t_list *new)
 {
-	printf('lol');
-	return(0);
+	t_list	*ptr;
+
+	if (!alst)
+		return ;
+	if (!*alst)
+		*alst = new;
+	else if (*alst && new)
+	{
+		ptr = *alst;
+		new->next = ptr;
+		*alst = new;
+	}
 }

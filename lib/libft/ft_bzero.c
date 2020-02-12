@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:35:30 by froussel         ###   ########.fr       */
+/*   Created: 2019/10/07 14:32:51 by wpark             #+#    #+#             */
+/*   Updated: 2019/10/11 14:15:58 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main()
+void	ft_bzero(void *s, size_t n)
 {
-	printf('lol');
-	return(0);
+	unsigned int	i;
+	char			*str;
+
+	if (s == 0)
+		return ;
+	i = 0;
+	str = (char*)s;
+	while (i < n)
+	{
+		*str++ = 0;
+		i++;
+	}
 }

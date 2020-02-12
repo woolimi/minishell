@@ -1,31 +1,37 @@
-SRCS_minishell = srcs/main.c
-
-SRCS_libft =
-
-SRCS = ${SRCS_minishell} ${SRCS_libft}
-
-INCL = -Iincludes/
-
-OBJS = ${SRCS:.c=.o}
-
 NAME = minishell
-
 FLAGS = -Wall -Wextra -Werror
+SRC_NAME = main.c
+
+SRC_PATH = ./srcs
+SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
+
+OBJ_NAME = $(SRC_NAME:.c=.o)
+OBJ_PATH = ./obj
+OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
+
+INC_LINK = -I./includes
 
 all : $(NAME)
 
-$(NAME) : ${OBJS}
-		gcc ${FLAGS} -o $(NAME) ${OBJS} 
+$(NAME) : $(OBJ) libft
+		gcc $(FLAGS) $(OBJ) $(INC_LINK) -o $(NAME) 
 
-.c.o : ${SRCS}
-		gcc ${FLAGS} -c ${INCL} $< -o ${<:.c=.o}
+$(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
+	@mkdir $(OBJ_PATH) 2> /dev/null || true
+	@gcc $(CFLAGS) $(INC_LINK) -o $@ -c $<
+	
+# libft compile
+libft :
+	@$(MAKE) -C ./lib/libft all
+
 clean :
-		rm -f ${OBJS}
+	@$(MAKE) -C ./lib/libft clean
+	@rm -rf ./obj
 
-fclean : clean
-		rm -f $(NAME)
+fclean :
+	@$(MAKE) -C ./lib/libft fclean
+	@rm -rf ./obj $(NAME)
 
-re : fclean
-		make all
+re : fclean all
 
 .PHONY: all clean fclean re

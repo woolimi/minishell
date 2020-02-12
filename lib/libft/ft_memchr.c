@@ -1,19 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_memchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:35:30 by froussel         ###   ########.fr       */
+/*   Created: 2019/10/11 10:31:38 by wpark             #+#    #+#             */
+/*   Updated: 2019/10/11 10:32:04 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main()
+void	*ft_memchr(const void *s, int c, size_t n)
 {
-	printf('lol');
-	return(0);
+	unsigned char	*ps;
+	unsigned int	i;
+
+	ps = (unsigned char*)s;
+	i = 0;
+	while (i < n)
+	{
+		if (ps[i] == (unsigned char)c)
+			return (ps + i);
+		i++;
+	}
+	return (0);
 }

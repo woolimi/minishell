@@ -1,19 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_calloc.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <marvin@42.fr>                       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/12 18:35:30 by froussel         ###   ########.fr       */
+/*   Created: 2019/10/11 11:13:45 by wpark             #+#    #+#             */
+/*   Updated: 2019/10/11 11:23:30 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "libft.h"
 
-int	main()
+void	*ft_calloc(size_t count, size_t size)
 {
-	printf('lol');
-	return(0);
+	unsigned char	*ptr;
+
+	if (!(ptr = (unsigned char*)malloc(size * count)))
+		return (0);
+	ft_memset(ptr, 0, size * count);
+	return ((void*)ptr);
 }
