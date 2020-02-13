@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/13 03:20:32 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/13 19:30:49 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,10 @@ int	main(int ac, char **av, char **env)
 		line = 0;
 		ret = get_next_line(&line);
 		// treat command
+		function_coupe_par_;
+		commande = function_coupe_par_pip
 		// ft_split(line, ';');
+		lexer(line);
 		command = ft_split(line, ' ');
 		if (ft_strlen(command[0]) == 4 
 			&& ft_strnstr(command[0], "exit", 4))

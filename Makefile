@@ -1,6 +1,18 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: froussel <froussel@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
+#    Updated: 2020/02/13 17:18:39 by froussel         ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME = minishell
 FLAGS = -Wall -Wextra -Werror
-SRC_NAME = main.c
+SRC_NAME = main.c lexer.c
 
 SRC_PATH = ./srcs
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
