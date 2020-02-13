@@ -10,15 +10,15 @@ OBJ_PATH = ./obj
 OBJ = $(addprefix $(OBJ_PATH)/, $(OBJ_NAME))
 
 INC_LINK = -I./includes
-
+LIBFT = -L./lib/libft -lft
 all : $(NAME)
 
 $(NAME) : $(OBJ) libft
-		gcc $(FLAGS) $(OBJ) $(INC_LINK) -o $(NAME) 
+	gcc $(FLAGS) $(OBJ) $(INC_LINK) $(LIBFT) -o $(NAME) 
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	@gcc $(CFLAGS) $(INC_LINK) -o $@ -c $<
+	gcc $(CFLAGS) $(INC_LINK) -o $@ -c $<
 	
 # libft compile
 libft :
