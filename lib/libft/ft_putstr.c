@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.h                                        :+:      :+:    :+:   */
+/*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/12 18:11:12 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/13 02:04:12 by wpark            ###   ########.fr       */
+/*   Created: 2020/02/13 00:44:23 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/13 02:08:14 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef MINISHELL_H
-# define MINISHELL_H
+#include "libft.h"
 
-# include "../lib/libft/libft.h"
-# include <unistd.h>
-# include <sys/types.h>
-# include <signal.h>
-//DEBUG
-# include <stdio.h>
-
-#endif
+void	ft_putstr(char *s)
+{
+	while (*s != '\0')
+		ft_putchar_fd(*s++, 1);
+}

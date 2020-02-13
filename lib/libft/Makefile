@@ -1,5 +1,6 @@
 NAME = libft.a
 CFLAGS = -Wall -Wextra -Werror -I. -c
+
 SRCS = ft_memset.c \
 		ft_bzero.c \
 		ft_memcpy.c \
@@ -45,24 +46,25 @@ SRCS = ft_memset.c \
 		ft_lstmap_bonus.c \
 		ft_haschr.c \
 		get_next_line1.c \
-		get_next_line2.c
+		get_next_line2.c \
+		ft_putstr.c
 
 OBJS = $(SRCS:%.c=%.o)
 
 all : $(NAME)
 
 $(NAME) : $(OBJS)
-		@ar rcs ../$(NAME) $(OBJS)
-		@ranlib ../$(NAME)
+		@ar rcs $(NAME) $(OBJS)
+		@ranlib $(NAME)
 
 $(OBJS) : $(SRCS)
-		@gcc $(CFLAGS) -o $@ -c $<
+		@gcc $(CFLAGS) $(SRCS)
 
 clean : 
 	@rm -f $(OBJS)
 
 fclean : clean
-	@rm -f ../$(NAME)
+	@rm -f $(NAME)
 
 re : fclean all
 

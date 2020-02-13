@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 10:46:12 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/12 20:04:06 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/13 00:45:10 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,5 +97,6 @@ int 				ft_haschr(const char *s, char c);
 int					lst_hasnl(t_cache *cache);
 t_cache				*lst_add(t_cache **cache, char *content);
 int					lst_length(t_cache *cache);
+void				ft_putstr(char *s);
 
 #endif
