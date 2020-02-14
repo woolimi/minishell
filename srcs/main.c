@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/13 19:30:49 by froussel         ###   ########.fr       */
+/*   Updated: 2020/02/14 15:14:27 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	signal_handler(int signo)
 int	main(int ac, char **av, char **env)
 {
 	char *line;
-	char **command;
+	char **tokens;
 	int ret;
 
 	if (!ac || !av || !env)
@@ -45,16 +45,19 @@ int	main(int ac, char **av, char **env)
 		line = 0;
 		ret = get_next_line(&line);
 		// treat command
-		function_coupe_par_;
-		commande = function_coupe_par_pip
+		if (!check_is_valide_quote())
+		{
+			ft_puststr("QUOTES NEED TO BE CLOSE\n");
+			continue ;
+		}
 		// ft_split(line, ';');
-		lexer(line);
-		command = ft_split(line, ' ');
-		if (ft_strlen(command[0]) == 4 
-			&& ft_strnstr(command[0], "exit", 4))
-			break ;
+		tokens = lexing(line);
 		// treat command
 		free(line);
 	}
 	return(0);
 }
+
+" \""
+"\" "
+"\"\n"

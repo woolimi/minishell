@@ -6,90 +6,178 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 18:11:12 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/13 17:38:55 by froussel         ###   ########.fr       */
+/*   Updated: 2020/02/14 18:50:50 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../includes/minishell.h"
 
-int		count_semicolon(char *line)
+#define SEP_SPACE " \t<>|;"
+#define SEP "<>|;"
+#define SPACE " \t"
+
+int jump_space(char *line, int i)
 {
+	int jmp;
+
+	jmp = 1;
+	while(line[i] == ' ' || line[i] == '\t')
+	{
+		i++;
+		jmp++;
+	}
+	return(jmp);
+}
+
+int	check_sep(char *line, int i)
+{
+	if(line[i] == ' ' || line[i] == '\t')
+		return(jump_space(line, i + 1));
+	if(line[i] == '>' && line[i + 1] == '>')
+		return(jump_space(line, i + 2));
+	if(line[i] == '>')
+		return(jump_space(line, i + 1));
+	if(line[i] == '<')
+		return(jump_space(line, i + 1));
+	if(line[i] == '|')
+		return(jump_space(line, i + 1));
+	if(line[i] == ';')
+		return(jump_space(line, i + 1));
+	return(0);
+}
+
+int jmp_quotes(char *line, int i)
+{
+	if(line[i]  == '\"')
+	{
+		i++;
+		while(line[i] != '\"' && line[i])
+			i++;
+		if(line[i + 1] == '\0')
+			printf("QUOTES NEED TO BE CLOSE\n");
+	}
+	else if(line[i]  == '\'')
+	{
+		i++;
+		while(line[i] != '\'' && line[i])
+			i++;
+		if(line[i + 1] == '\0')
+			printf("SINGLE QUOTE NEED TO BE CLOSE\n");
+	}
+	return(i);
+}
+
+int count_params(char *line)
+{
+	int i;
 	int count;
 
-	count = 0;
-	while(*line)
+	i = 0;
+	while(line[i])
 	{
-		if(*line == '\'' || *line == '\"')
+		if(!ft_haschr(SEP_SPACE, line[i]) && line[i])
 		{
-			*line++;
-			while(*line != '\'' && *line != '\"' && *line)
-				*line++;
-			if(*line == '\0')
-				printf("QUOTES NEED TO BE CLOSE\n");
-		}
-		if(*line == ';')
 			count++;
-		*line++;
+			while(!ft_haschr(SEP_SPACE, line[i]) && line[i])
+			{
+				jmp_quotes(line, i);
+				i++;
+			}
+		}
+		if(ft_haschr(SEP, line[i]))
+			count++;
+		i += check_sep(line, i);
 	}
 	return(count);
 }
 
-char	**parse_semicolon(char *line)
-{
-	char	**tokens;
-	int		i;
-	int		pos;
-	int		start;
 
-	i = count_semicolon(line);
-	tokens = (char **)malloc(sizeof(*char) * (i + 1));
-	i = 0;
-	pos = 0 ;
-	start = 0;
-	while(line[i])
+
+/*
+int jump_space(char *line, int i)
+{
+	int j;
+
+	j = 1;
+	while(line[i] == ' ' || line[i] == '\t')
 	{
-		if(line[i] == '\'' || line[i] == '\"')
-			while(line[i] != '\'' && line[i] != '\"')
-				i++;
-		if(line[i] == ';')
-		{
-			tokens[pos] = ft_substr(line, start, i);
-			pos++;
-			start = i;
-		}
+		i++;
+		j++;
 	}
-	tokens[pos] = ft_substr(line, start, i);
-	tokens[pos + 1] = NULL;
-	return(tokens);
+	//if(!line[i])
+	//	return(1);
+	return(j);
 }
 
-void	lexer(char *line)
+int	check_sep(char *line, int i)
+{
+	if(line[i] == ' ' || line[i] == '\t')
+		return(jump_space(line, i + 1));
+	if(line[i] == '>' && line[i + 1] == '>')
+		return(jump_space(line, i + 2));
+	if(line[i] == '>')
+		return(jump_space(line, i + 1));
+	if(line[i] == '<')
+		return(jump_space(line, i + 1));
+	if(line[i] == '|')
+		return(jump_space(line, i + 1));
+	if(line[i] == ';')
+		return(jump_space(line, i + 1));
+	return(0);
+}
+
+int count_params(char *line)
 {
 	int i;
-	int start;
-	char *cmd;
-	char *info;
+	int res;
+	int count;
 
-	i = 0;
-	while (line[i] == ' ' || line[i] == '\t')
-		i++;
-	start = i;
-	while(line[i] != ' ' && line[i])
-		i++;
-	cmd = ft_substr(line, start, i);
-	start = i;
-	while (line[i] && line[i] != ';')
-		i++;
-	info = ft_substr(line, start, i);
+	count = 1;
+	i = jump_space(line, 0) - 1;
+	while(line[++i])
+	{
+		if(line[i]  == '\"') //same for '
+		{
+			i++;
+			count++;
+			while(line[i] != '\"' && line[i])
+				i++;
+			if(line[i++] == '\0')
+				printf("QUOTES NEED TO BE CLOSE\n");
+		}
+		if((res = check_sep(line, i)) && ++count)
+			i += res - 1;
+	}
+	return(count);                                                       
+}
+*/
+/*
+char *spliter(char **tokens)
+{
 
-	//if(line[i] == ';')
-	//	lexer(&line[i]);
-	
-	//DEBUG
-	/*
-	printf("CMD=|%s|\n", cmd);
-	printf("INFO=|%s|\n", info);
-	free(cmd);
-	free(info);
-	*/
+}
+
+char *lexing(char *line)
+{
+	char	**tokens;
+	int		count;
+
+	count = count_params(line);
+	if(!(tokens = (char **)malloc(sizeof(char *) * (count + 1))))
+		printf("ERREUR DE MALLOC");
+	return(spliter(tokens));
+}
+*/
+int main()
+{
+	int res;
+	//res = count_params("cat salut\";o;g; ;s;h;i;t\" tout; le monde je ;vais");
+	//res = count_params("     	  |     \"\"	");
+	//res = count_params("echo dsf\"fds\"fds 	");
+	//res = count_params("echo \"fsd   fds\" sfd 	; echo lol");
+	//res = count_params("file>tata");
+	//res = count_params("file>tata;");
+	//res = count_params("> putain");
+	res = count_params("");
+	printf("res=%d\n", res);
 }
