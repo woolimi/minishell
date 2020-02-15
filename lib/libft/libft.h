@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 10:46:12 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/13 00:45:10 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/15 01:51:15 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,6 @@
 # define LIBFT_H
 # include <stdlib.h>
 # include <unistd.h>
-
-/*
-** Mandatory part 1
-*/
 
 void				*ft_memset(void *b, int c, size_t len);
 void				ft_bzero(void *s, size_t n);
@@ -45,12 +41,8 @@ int					ft_toupper(int c);
 int					ft_tolower(int c);
 char				*ft_strdup(const char *s1);
 void				*ft_calloc(size_t count, size_t size);
-
-/*
-** Mandatory part 2
-*/
-
-char				*ft_substr(char const *s, unsigned int start, size_t len);
+int 				ft_strequ(const char *s1, const char *s2);
+char 				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
@@ -61,29 +53,6 @@ void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 
-/*
-** Bonus 2
-*/
-
-typedef	struct		s_list
-{
-	void			*content;
-	struct s_list	*next;
-}					t_list;
-
-t_list				*ft_lstnew(void *content);
-void				ft_lstadd_front(t_list **alst, t_list *new);
-int					ft_lstsize(t_list *lst);
-t_list				*ft_lstlast(t_list *lst);
-void				ft_lstadd_back(t_list **alst, t_list *new);
-void				ft_lstdelone(t_list *lst, void (*del)(void*));
-void				ft_lstclear(t_list **lst, void (*del)(void*));
-void				ft_lstiter(t_list *lst, void (*f)(void*));
-t_list				*ft_lstmap(t_list *lst, void *(*f)(void*));
-
-/*
-** add function
-*/
 
 #define BS 256
 typedef struct		s_cache
@@ -92,7 +61,7 @@ typedef struct		s_cache
 	struct s_cache	*next;
 }					t_cache;
 
-int 				get_next_line(char **line);
+int 				get_next_line(int fd, char **line);
 int 				ft_haschr(const char *s, char c);
 int					lst_hasnl(t_cache *cache);
 t_cache				*lst_add(t_cache **cache, char *content);

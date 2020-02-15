@@ -1,26 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstsize.c                                       :+:      :+:    :+:   */
+/*   ft_strequ.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <marvin@42.fr>                       +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 11:12:01 by wpark             #+#    #+#             */
-/*   Updated: 2019/10/11 11:12:02 by wpark            ###   ########.fr       */
+/*   Created: 2020/02/14 19:30:11 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/14 19:36:17 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-int	ft_lstsize(t_list *lst)
+int	ft_strequ(const char *s1, const char *s2)
 {
-	int	cnt;
-
-	cnt = 0;
-	while (lst)
-	{
-		cnt++;
-		lst = lst->next;
-	}
-	return (cnt);
+	if (!ft_strcmp(s1, s2))
+		return (1);
+	return (0);
 }

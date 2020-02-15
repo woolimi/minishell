@@ -6,13 +6,13 @@
 #    By: froussel <froussel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/02/13 17:18:39 by froussel         ###   ########.fr        #
+#    Updated: 2020/02/15 16:55:52 by froussel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = -Wall -Wextra -Werror
-SRC_NAME = main.c lexer.c
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
+SRC_NAME = main.c lexer_1.c lexer_2.c
 
 SRC_PATH = ./srcs
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
@@ -30,7 +30,7 @@ $(NAME) : $(OBJ) libft
 
 $(OBJ_PATH)/%.o: $(SRC_PATH)/%.c
 	@mkdir $(OBJ_PATH) 2> /dev/null || true
-	gcc $(CFLAGS) $(INC_LINK) -o $@ -c $<
+	gcc $(FLAGS) $(INC_LINK) -o $@ -c $<
 	
 # libft compile
 libft :
