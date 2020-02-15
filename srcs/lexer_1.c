@@ -6,15 +6,11 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:42 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/15 15:58:37 by froussel         ###   ########.fr       */
+/*   Updated: 2020/02/15 16:27:17 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"
-
-#define SEP_SPACE " \t<>|;"
-#define SEP "<>|;"
-#define SPACE " \t"
 
 static int	count_params(char *line)
 {
@@ -44,11 +40,11 @@ static int	count_params(char *line)
 static char	*spliter(char *line, int goal)
 {
 	int i;
-	int start;
+	int st;
 	int count;
 
 	i = 0;
-	start = 0;
+	st = 0;
 	count = 0;
 	while (line[i])
 	{
@@ -57,14 +53,14 @@ static char	*spliter(char *line, int goal)
 			while (!ft_haschr(SEP_SPACE, line[i]) && line[i])
 				i = jmp_quotes(line, i) + 1;
 			if (count == goal)
-				return (ft_substr(line, start, i));
-			start = i;
+				return (ft_strsub(line, st, i - st));
+			st = i;
 		}
 		if (ft_haschr(SEP, line[i]) && ++count)
 			if (count == goal)
-				return (ft_substr(line, start, i + check_sep(line, i, 1)));
+				return (ft_strsub(line, st, i + check_sep(line, i, 1) - st));
 		i += check_sep(line, i, 2);
-		start = i;
+		st = i;
 	}
 	return (NULL);
 }
