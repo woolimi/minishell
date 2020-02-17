@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/17 05:04:35 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/17 18:34:53 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,13 @@ void	signal_handler(int signo)
 	if (signo == SIGINT)
 	{
 		ft_putstr("\n");
-		prompt_msg();
+		if (get_minish()->executed == 1)
+			get_minish()->executed = 0;
+		else
+			prompt_msg();
 	}
+	else if (signo == SIGQUIT)
+		ft_putstr("SIGOUT\n");
 }
 
 /*
@@ -40,10 +45,11 @@ int	main(int ac, char **av, char **env)
 		return (0);
 	minish = get_minish();
 	init_env_list(env);
-	while(1)
+	signal(SIGINT, signal_handler);
+	signal(SIGQUIT, signal_handler);
+	while (1)
 	{
 		prompt_msg();
-	//	signal(SIGINT, signal_handler);
 		minish->line = 0;
 		ret = get_next_line(0, &(minish->line));		
 		tokens = ft_split(minish->line, ' ');

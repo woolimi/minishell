@@ -6,16 +6,19 @@
 #    By: wpark <wpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/02/17 05:06:41 by wpark            ###   ########.fr        #
+#    Updated: 2020/02/17 17:24:17 by wpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 FLAGS = -g3 -fsanitize=address
 SRC_NAME = main.c \
+		error.c \
 		exec_command.c \
 		exec_env.c \
+		exec_exit.c \
 		exec_export.c \
+		exec_non_btin.c \
 		exec_unset.c \
 		get_static.c \
 		init_cmd.c \
@@ -24,8 +27,7 @@ SRC_NAME = main.c \
 		lexer_2.c \
 		lst_cmd.c \
 		lst_env.c \
-		parser_1.c \
-		syntax_error.c
+		parser_1.c
 
 SRC_PATH = ./srcs
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
