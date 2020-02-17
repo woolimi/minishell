@@ -29,6 +29,7 @@ static void	lst_add_redir_cmd(t_cmd *cmd, char *redir, char *file)
 	t_cmd *last;
 
 	last = lst_last_cmd(cmd);
+	last->is_rdir = 1;
 	if (ft_strequ(redir, "<"))
 	{
 		last->in = malloc(sizeof(t_rdir));

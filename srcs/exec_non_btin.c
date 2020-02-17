@@ -40,6 +40,8 @@ void	exec_non_built_in(t_cmd *cmd)
 	char *path_cmd2;
 	int	i;
 
+	if (cmd->is_rdir)
+		redirection(cmd);
 	path_arr = create_path_arr();
 	i = 0;
 	while (path_arr[i])
@@ -52,5 +54,5 @@ void	exec_non_built_in(t_cmd *cmd)
 		i++;
 	}
 	free_path_arr(path_arr);
-	exit(exec_no_file_error(cmd->argv[0], 1));
+	exit(no_exec_error(cmd->argv[0], 1));
 }

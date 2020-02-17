@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/17 18:34:53 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/17 18:50:59 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,15 @@ void	signal_handler(int signo)
 			get_minish()->executed = 0;
 		else
 			prompt_msg();
+	} else if (signo == SIGQUIT)
+	{
+		if (get_minish()->executed == 1)
+		{
+			ft_putstr("\n");
+			get_minish()->executed = 0;
+		}
 	}
-	else if (signo == SIGQUIT)
-		ft_putstr("SIGOUT\n");
 }
-
-/*
-** SIGINT : detect cntl + c
-*/
 
 int	main(int ac, char **av, char **env)
 {

@@ -9,10 +9,18 @@ int syntax_error(char *token, int ret)
 	return (ret);
 }
 
-int exec_no_file_error(char *cmd, int ret)
+int no_exec_error(char *cmd, int ret)
 {
 	ft_putstr_fd("minishell: command not found: ", 2);
 	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd("\n", 2);
+	return (ret);
+}
+
+int no_file_error(char *file, int ret)
+{
+	ft_putstr_fd("minishell: No such file or directory: ", 2);
+	ft_putstr_fd(file, 2);
 	ft_putstr_fd("\n", 2);
 	return (ret);
 }
