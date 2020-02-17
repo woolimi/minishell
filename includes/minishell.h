@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 18:11:12 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/15 16:29:03 by froussel         ###   ########.fr       */
+/*   Updated: 2020/02/16 23:07:42 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,8 +21,12 @@
 # include <unistd.h>
 # include <sys/types.h>
 # include <signal.h>
+# include "woolim.h"
+
+
 //DEBUG
 # include <stdio.h>
+
 
 /*
 **	lexer_1.c 
