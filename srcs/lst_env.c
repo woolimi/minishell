@@ -1,0 +1,77 @@
+#include "minishell.h"
+
+t_env
+	*lst_new_env(char *key, char *value)
+{
+	t_env	*new;
+
+	new = malloc(sizeof(t_env));
+	new->key = ft_strdup(key);
+	new->value = ft_strdup(value);
+	new->next = NULL;
+	return (new);
+}
+
+t_env
+	*lst_last_env(t_env *begin)
+{
+	while (begin->next)
+		begin = begin->next;
+	return (begin);
+}
+
+t_env
+	*lst_add_env(t_env *begin, char *key, char *value)
+{
+	t_env	*last;
+
+	last = lst_last_env(begin);
+	last->next = lst_new_env(key, value);
+	return (begin);
+}
+
+void
+	lst_remove_env(char *key)
+{
+	t_env *bef;
+	t_env *now;
+	t_env *nxt;
+
+	bef = 0;
+	now = get_minish()->env;
+	while (now)
+	{
+		nxt = now->next;
+		if (ft_strequ(now->key, key))
+		{
+			if (bef)
+				bef->next = nxt;
+			else
+				get_minish()->env = nxt;
+			free(now->key);
+			free(now->value);
+			free(now);
+			break;
+		}
+		bef = now;
+		now = nxt;
+	}
+}
+
+void
+	lst_check_and_add_env(char *key, char *value)
+{
+	t_env	*env;
+
+	env = get_minish()->env;
+	while (env->next)
+	{
+		if (ft_strequ(env->key, key))
+		{
+			env->value = ft_strdup(value);
+			return ;
+		}
+		env = env->next;
+	}
+	env->next = lst_new_env(key, value);
+}

@@ -3,16 +3,29 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: froussel <froussel@student.42.fr>          +#+  +:+       +#+         #
+#    By: wpark <wpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/02/15 16:55:52 by froussel         ###   ########.fr        #
+#    Updated: 2020/02/17 05:06:41 by wpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
-SRC_NAME = main.c lexer_1.c lexer_2.c
+FLAGS = -g3 -fsanitize=address
+SRC_NAME = main.c \
+		exec_command.c \
+		exec_env.c \
+		exec_export.c \
+		exec_unset.c \
+		get_static.c \
+		init_cmd.c \
+		init_env.c \
+		lexer_1.c \
+		lexer_2.c \
+		lst_cmd.c \
+		lst_env.c \
+		parser_1.c \
+		syntax_error.c
 
 SRC_PATH = ./srcs
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
