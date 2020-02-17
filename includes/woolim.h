@@ -55,8 +55,12 @@ t_cmd *lst_last_cmd(t_cmd *cmd);
 int syntax_error(char *token, int ret);
 void	exec_command(void);
 char **get_built_in(void);
-int exec_no_file_error(char *cmd, int ret);
+int no_exec_error(char *cmd, int ret);
 void exec_non_built_in(t_cmd *cmd);
 void exec_exit(t_cmd *cmd);
+int no_file_error(char *file, int ret);
+void redirection(t_cmd *cmd);
+t_cmd *piping(t_cmd *cmd);
+int is_built_in(char *arg);
 
 #endif

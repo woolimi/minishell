@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static int is_built_in(char *arg)
+int is_built_in(char *arg)
 {
 	char **btin_arr;
 	int		i;
@@ -53,7 +53,7 @@ void	exec_command(void)
 	{
 		if (cmd->is_pipe)
 		{
-			// pipe (need to fork)
+			// cmd = piping(cmd);
 		}
 		else
 		{
