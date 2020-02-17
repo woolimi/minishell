@@ -37,19 +37,18 @@ static void exec_built_in(int btin_nb, t_cmd *cmd)
 	else if (btin_nb == 5)
 		exec_env(cmd);
 	else if (btin_nb == 6)
-	{
-		// exec_exit();
-	}
+		exec_exit(cmd);
 }
 
 void	exec_command(void)
 {
 	t_cmd* cmd;
-	int		i;
 	int		btin_nb;
+	int 	child_pid;
+	int 	status;
 
 	cmd = get_minish()->cmd;
-	i = 0;
+	get_minish()->executed = 1;
 	while (cmd)
 	{
 		if (cmd->is_pipe)
@@ -62,9 +61,15 @@ void	exec_command(void)
 				exec_built_in(btin_nb, cmd);
 			else
 			{
-				// non builtin function (need to fork)
+				if ((child_pid = fork()) == -1)
+				{ /* fork failed error */}
+				else if (child_pid == 0)
+					exec_non_built_in(cmd);
+				else if (child_pid > 0)
+					wait(&status);
 			}
 		}
 		cmd = cmd->next;
 	}
+	get_minish()->executed = 0;
 }

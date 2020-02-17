@@ -31,6 +31,7 @@ typedef struct s_minish
 	char	*line;
 	t_env	*env;
 	t_cmd	*cmd;
+	int		executed;
 } t_minish;
 
 t_minish *get_minish(void);
@@ -54,5 +55,8 @@ t_cmd *lst_last_cmd(t_cmd *cmd);
 int syntax_error(char *token, int ret);
 void	exec_command(void);
 char **get_built_in(void);
+int exec_no_file_error(char *cmd, int ret);
+void exec_non_built_in(t_cmd *cmd);
+void exec_exit(t_cmd *cmd);
 
 #endif

@@ -3,7 +3,7 @@
 t_minish *get_minish(void)
 {
 	static t_minish	minish;
-
+		
 	return (&minish);
 }
 

@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 18:11:12 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/16 23:07:42 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/17 17:06:30 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include "../lib/libft/libft.h"
 # include <unistd.h>
 # include <sys/types.h>
+# include <sys/wait.h>
 # include <signal.h>
 # include "woolim.h"
 
