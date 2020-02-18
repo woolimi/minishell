@@ -13,12 +13,9 @@ static int count_arg(char **argv)
 void	exec_cd(t_cmd *cmd)
 {
 	t_env *env;
+	char cwd[PATH_MAX];
 	int cnt;
 
-	if (cmd->is_rdir)
-	{
-		// dup, dup2
-	}
 	cnt = count_arg(cmd->argv);
 	if (cnt == 1)
 		chdir("/");
@@ -28,7 +25,7 @@ void	exec_cd(t_cmd *cmd)
 	{
 		if (chdir(cmd->argv[1]) == -1)
 			no_file_error(cmd->argv[1], 0);
+		else
+			lst_check_and_add_env("PWD", getcwd(cwd, sizeof(cwd)));
 	}
-	// update_env_pwd();
-	// backup dup, dup2
 }

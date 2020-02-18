@@ -13,9 +13,10 @@
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
-#define SEP_SPACE " \t<>|;"
-#define SEP "<>|;"
-#define SPACE " \t"
+# define SEP_SPACE " \t<>|;"
+# define SEP "<>|;"
+# define SPACE " \t"
+# define PATH_MAX 1024
 
 # include "../lib/libft/libft.h"
 # include <unistd.h>
@@ -25,6 +26,8 @@
 # include <signal.h>
 # include <fcntl.h>
 # include "woolim.h"
+# include <string.h>
+# include <errno.h>
 
 
 //DEBUG
