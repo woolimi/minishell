@@ -6,7 +6,7 @@ static int check_file_exist(t_cmd *cmd, char *file)
 
 	fd = open(file, O_RDONLY);
 	if (fd == -1)
-		return (no_file_error(file, 0));
+		return (no_file_error(file, NULL, 0));
 	cmd->in->fd = fd;
 	return (1);
 }

@@ -21,6 +21,7 @@ typedef struct	s_cmd
 	char	**argv; // { "cat", "Makefile" , NULL}
 	int		is_pipe;	// 1
 	int		is_rdir;	// 1
+	int		has_path; // 1 if { "./a.out", NULL}
 	t_rdir	*in;
 	t_rdir	*out;	// file = file.txt, fd = open()
 	t_rdir	*out_dbl;
@@ -59,7 +60,7 @@ char **get_built_in(void);
 int no_exec_error(char *cmd, int ret);
 void exec_non_built_in(t_cmd *cmd);
 void exec_exit(t_cmd *cmd);
-int no_file_error(char *file, int ret);
+int no_file_error(char *cmd, char *file, int ret);
 void redirection(t_cmd *cmd);
 void close_redirection(t_cmd *cmd);
 t_cmd *piping(t_cmd *cmd);
