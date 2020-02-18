@@ -20,6 +20,7 @@ typedef struct	s_cmd
 	char	**argv; // { "cat", "Makefile" , NULL}
 	int		is_pipe;	// 1
 	int		is_rdir;	// 1
+	int		has_path; // 1 if { "./a.out", NULL}
 	t_rdir	*in;
 	t_rdir	*out;	// file = file.txt, fd = open()
 	t_rdir	*out_dbl;
