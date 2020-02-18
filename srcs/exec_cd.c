@@ -27,7 +27,9 @@ void	exec_cd(t_cmd *cmd)
 	else
 	{
 		if (chdir(cmd->argv[1]) == -1)
-			no_file_error(cmd->argv[1], 0);
+		{
+			no_file_error(cmd->argv[0], cmd->argv[1], 0);
+		}
 	}
 	// update_env_pwd();
 	// backup dup, dup2

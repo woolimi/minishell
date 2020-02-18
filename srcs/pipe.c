@@ -79,13 +79,12 @@ t_cmd *piping(t_cmd *cmd)
 			if (i > 0)
 				dup2(pipes[(i - 1) * 2], 0);
 			close_pipes(pipes, nb);
-			if ((btin_nb = is_built_in(cmd->argv[0]) != -1))
+			if ((btin_nb = is_built_in(cmd->argv[0])) != -1)
 			{
 				exec_built_in(btin_nb, cmd);
 				exit(0);
 			}
-			else
-				exec_non_built_in(cmd);
+			exec_non_built_in(cmd);
 		} else if (cpid == -1)
 		{
 			// error

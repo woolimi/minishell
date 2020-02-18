@@ -26,7 +26,6 @@ void	exec_echo(t_cmd *cmd)
 	int i;
 	int cnt;
 
-
 	// redirection check
 	// code ..
 	cnt = count_arg(cmd->argv);

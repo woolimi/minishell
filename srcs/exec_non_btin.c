@@ -61,6 +61,6 @@ void	exec_non_built_in(t_cmd *cmd)
 	else
 	{
 		execve(cmd->argv[0], cmd->argv, NULL);
-		exit(no_file_error(cmd->argv[0], 1));
+		exit(no_file_error(cmd->argv[0], NULL, 1));
 	}
 }

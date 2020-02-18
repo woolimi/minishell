@@ -60,7 +60,7 @@ char **get_built_in(void);
 int no_exec_error(char *cmd, int ret);
 void exec_non_built_in(t_cmd *cmd);
 void exec_exit(t_cmd *cmd);
-int no_file_error(char *file, int ret);
+int no_file_error(char *cmd, char *file, int ret);
 void redirection(t_cmd *cmd);
 void close_redirection(t_cmd *cmd);
 t_cmd *piping(t_cmd *cmd);
