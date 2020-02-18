@@ -32,17 +32,39 @@ void redirection(t_cmd *cmd)
 {
 	if (cmd->in && (check_file_exist(cmd, cmd->in->file)))
 	{
+		cmd->in->save_fd = dup(0); 
 		dup2(cmd->in->fd, 0);
 		close(cmd->in->fd);
 	}
 	if (cmd->out && open_out_file(cmd, cmd->out->file, 0))
 	{
+		cmd->out->save_fd = dup(1);
 		dup2(cmd->out->fd, 1);
 		close(cmd->out->fd);
 	}
 	if (cmd->out_dbl && open_out_file(cmd, cmd->out_dbl->file, 1))
 	{
+		cmd->out_dbl->save_fd = dup(1);
 		dup2(cmd->out_dbl->fd, 1);
 		close(cmd->out_dbl->fd);
+	}
+}
+
+void close_redirection(t_cmd *cmd)
+{
+	if (cmd->in)
+	{
+		dup2(cmd->in->save_fd, 0);
+		close(cmd->in->save_fd);
+	}
+	if (cmd->out)
+	{
+		dup2(cmd->out->save_fd, 1);
+		close(cmd->out->save_fd);
+	}
+	if (cmd->out_dbl)
+	{
+		dup2(cmd->out_dbl->save_fd, 1);
+		close(cmd->out_dbl->save_fd);
 	}
 }

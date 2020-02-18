@@ -12,6 +12,7 @@ typedef struct	s_rdir
 {
 	char	*file;
 	int		fd;
+	int	save_fd;
 }				t_rdir;
 
 // tokens = { "cat", "Makefile", ">", "file.txt", "|", ...}
@@ -61,6 +62,7 @@ void exec_non_built_in(t_cmd *cmd);
 void exec_exit(t_cmd *cmd);
 int no_file_error(char *file, int ret);
 void redirection(t_cmd *cmd);
+void close_redirection(t_cmd *cmd);
 t_cmd *piping(t_cmd *cmd);
 int is_built_in(char *arg);
 void exec_built_in(int btin_nb, t_cmd *cmd);
