@@ -53,7 +53,8 @@ void	exec_command(void)
 	{
 		if (cmd->is_pipe)
 		{
-			// cmd = piping(cmd);
+			cmd = piping(cmd);
+			continue ;
 		}
 		else
 		{
