@@ -62,5 +62,9 @@ int no_file_error(char *file, int ret);
 void redirection(t_cmd *cmd);
 t_cmd *piping(t_cmd *cmd);
 int is_built_in(char *arg);
-
+void exec_built_in(int btin_nb, t_cmd *cmd);
+void exec_pwd(t_cmd *cmd);
+int too_many_arg_error(char *cmd, int ret);
+void	exec_cd(t_cmd *cmd);
+void	exec_echo(t_cmd *cmd);
 #endif

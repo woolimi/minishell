@@ -6,7 +6,7 @@
 #    By: wpark <wpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/02/18 01:23:37 by wpark            ###   ########.fr        #
+#    Updated: 2020/02/18 02:46:57 by wpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,11 +14,14 @@ NAME = minishell
 FLAGS = 
 SRC_NAME = main.c \
 		error.c \
+		exec_cd.c \
 		exec_command.c \
+		exec_echo.c \
 		exec_env.c \
 		exec_exit.c \
 		exec_export.c \
 		exec_non_btin.c \
+		exec_pwd.c \
 		exec_unset.c \
 		get_static.c \
 		init_cmd.c \

@@ -42,15 +42,7 @@ echo normal text
 echo $VARIABLE
 ```
 
-* cd (without '-' option)
-```
-cd [path]
-cd .
-cd ..
-cd /
-cd ~
-cd [option??????]
-```
+* cd with only a relative or absolute path
 * pwd (without any options)
 * export (without any options)
 ```
