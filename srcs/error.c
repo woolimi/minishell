@@ -24,3 +24,11 @@ int no_file_error(char *file, int ret)
 	ft_putstr_fd("\n", 2);
 	return (ret);
 }
+
+int too_many_arg_error(char *cmd, int ret)
+{
+	ft_putstr_fd("minishell: too many arguments: ", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd("\n", 2);
+	return (ret);
+}

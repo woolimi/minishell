@@ -81,8 +81,7 @@ t_cmd *piping(t_cmd *cmd)
 			close_pipes(pipes, nb);
 			if ((btin_nb = is_built_in(cmd->argv[0]) != -1))
 			{
-				/* execute built in */
-				printf("built-in function\n");
+				exec_built_in(btin_nb, cmd);
 				exit(0);
 			}
 			else

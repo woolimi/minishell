@@ -16,20 +16,14 @@ int is_built_in(char *arg)
 	return (-1);
 }
 
-static void exec_built_in(int btin_nb, t_cmd *cmd)
+void exec_built_in(int btin_nb, t_cmd *cmd)
 {
 	if (btin_nb == 0)
-	{
-		// exec_echo();	
-	}
+		exec_echo(cmd);
 	else if (btin_nb == 1)
-	{
-		// exec_cd();
-	}
+		exec_cd(cmd);
 	else if (btin_nb == 2)
-	{
-		// exec_pwd();
-	}
+		exec_pwd(cmd);
 	else if (btin_nb == 3)
 		exec_export(cmd);
 	else if (btin_nb == 4)
