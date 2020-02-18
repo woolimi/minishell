@@ -10,6 +10,10 @@ t_cmd *lst_new_cmd(char *token)
 	new->argv[1] = NULL;
 	new->is_pipe = 0;
 	new->is_rdir = 0;
+	if (ft_strchr(new->argv[0], '/'))
+		new->has_path = 1;
+	else
+		new->has_path = 0;	
 	new->in = NULL;
 	new->out = NULL;
 	new->out_dbl = NULL;
