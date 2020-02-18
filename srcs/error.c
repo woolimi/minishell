@@ -38,3 +38,15 @@ int too_many_arg_error(char *cmd, int ret)
 	ft_putstr_fd("\n", 2);
 	return (ret);
 }
+
+int file_too_long(char *cmd, char *file, int ret)
+{
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(file, 2);
+	ft_putstr_fd(": File name too long", 2);
+	ft_putstr_fd("\n", 2);
+	return (ret);
+}
+

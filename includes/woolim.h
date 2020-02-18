@@ -70,4 +70,6 @@ void exec_pwd(t_cmd *cmd);
 int too_many_arg_error(char *cmd, int ret);
 void	exec_cd(t_cmd *cmd);
 void	exec_echo(t_cmd *cmd);
+int	file_too_long(char *cmd, char *file, int ret);
+
 #endif

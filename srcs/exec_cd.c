@@ -35,6 +35,8 @@ void	exec_cd(t_cmd *cmd)
 		chdir("/");
 	else if (cnt > 3)
 		too_many_arg_error(cmd->argv[0], 0);
+	else if (ft_strlen(cmd->argv[1]) > PATH_MAX)
+		file_too_long(cmd->argv[0], cmd->argv[1], 0);
 	else 
 	{
 		if (ft_strequ(cmd->argv[1], "~"))
