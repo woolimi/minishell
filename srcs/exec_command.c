@@ -18,6 +18,7 @@ int is_built_in(char *arg)
 
 void exec_built_in(int btin_nb, t_cmd *cmd)
 {
+	redirection(cmd);
 	if (btin_nb == 0)
 		exec_echo(cmd);
 	else if (btin_nb == 1)
@@ -32,6 +33,7 @@ void exec_built_in(int btin_nb, t_cmd *cmd)
 		exec_env(cmd);
 	else if (btin_nb == 6)
 		exec_exit(cmd);
+	close_redirection(cmd);
 }
 
 void	exec_command(void)

@@ -53,7 +53,7 @@ int	main(int ac, char **av, char **env)
 		prompt_msg();
 		minish->line = 0;
 		ret = get_next_line(0, &(minish->line));		
-		tokens = ft_split(minish->line, ' ');
+		tokens = lexing(minish->line);
 		if (!init_cmd_list(tokens))
 		{
 			// free line, token, cmd
