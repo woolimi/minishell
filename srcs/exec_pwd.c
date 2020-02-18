@@ -2,10 +2,13 @@
 
 void exec_pwd(t_cmd *cmd)
 {
-	t_env *env;
-	char buff[1024];
+	char cwd[PATH_MAX];
 	
-	getcwd(buff, 1024);//Null if fail with errno i
-	ft_putstr(buff);
+	if (!(getcwd(cwd, sizeof(cwd))))
+	{
+		ft_putstr_fd(strerror(errno), 2);
+		//return (-1);
+	}
+	ft_putstr(cwd);
 	ft_putstr("\n");
 }
