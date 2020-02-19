@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/18 21:37:09 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/19 01:40:31 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,11 @@ int	main(int ac, char **av, char **env)
 	{
 		prompt_msg();
 		minish->line = 0;
-		ret = get_next_line(0, &(minish->line));		
+		if (!get_next_line(0, &(minish->line)))
+		{
+			ft_putstr("\n");
+			exit(0);
+		}
 		tokens = lexing(minish->line);
 		if (!init_cmd_list(tokens))
 		{
