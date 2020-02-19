@@ -16,10 +16,6 @@ int	exec_env(t_cmd *cmd)
 {
 	t_env *env;
 
-	if (cmd->argv[1])
-	{
-		/* need to add */
-	}
 	print_env(get_minish()->env);
 	return (EXIT_SUCCESS);
 }
