@@ -74,3 +74,48 @@ int		jmp_quotes(char *line, int i)
 	}
 	return (i);
 }
+
+static int get_key(char key[], char *arg)
+{
+	int i;
+
+	i = 0;
+	while (arg[i] && arg[i] != ' ' && arg[i] != '$')
+	{
+		key[i] = arg[i];
+		i++;
+	}
+	key[i] = '\0';
+	return (i);
+}
+
+char *change_env_to_value(char *arg)
+{
+	char buff[1024];
+	char key[100];
+	char *value;
+	int i;
+
+	ft_memset(buff, 0, 1024);
+	i = 0;
+	while (*arg)
+	{
+		if (*arg == '$' && *(arg + 1) == '?')
+		{
+			i = ft_strlcat(buff, ft_itoa(get_minish()->excode), sizeof(buff));
+			arg += 2;
+		}
+		else if (*arg != '$' ||
+			(*arg == '$' && (!*(arg + 1) || *(arg + 1) == ' ')))
+			buff[i] = *arg++;
+		else
+		{
+			arg += get_key(key, ++arg);
+			value = lst_find_env(key);
+			i = ft_strlcat(buff, value, sizeof(buff));
+		}
+		i++;
+	}
+	buff[i] = '\0';
+	return ft_strdup(buff);
+}

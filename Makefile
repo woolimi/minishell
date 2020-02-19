@@ -32,7 +32,8 @@ SRC_NAME = main.c \
 		lst_env.c \
 		parser_1.c \
 		pipe.c \
-		redirection.c
+		redirection.c \
+		free_1.c
 
 SRC_PATH = ./srcs
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))

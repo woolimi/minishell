@@ -95,21 +95,28 @@ static char	**check_tokens(char **tks)
 	int		i;
 	int		j;
 
-	i = 0;
-	while (tks[i])
+	i = -1;
+	while (tks[++i])
 	{
 		j = -1;
 		while (tks[i][++j])
 		{
-			if (tks[i][j] == '\"' || tks[i][j] == '\'')
+			if (tks[i][j] == '\"')
 			{
 				new_tk = check_token(tks[i], tks[i][j]);
 				free(tks[i]);
 				tks[i] = new_tk;
 				break ;
 			}
+			else if (tks[i][j] == '\'')
+			{
+				new_tk = check_token(tks[i], tks[i][j]);
+				free(tks[i]);
+				tks[i] = change_env_to_value(new_tk);
+				free(new_tk);
+				break ;
+			}
 		}
-		i++;
 	}
 	return (tks);
 }

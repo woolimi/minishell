@@ -61,10 +61,13 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		if (!init_cmd_list(tokens))
 		{
-			// free line, token, cmd
+			free(tokens);
+			free_cmd();
 			continue ;
 		}
+		free(tokens);
 		exec_command();
+		free_cmd();
 	}
 	return(0);
 }

@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	free_env()
+void		free_env()
 {
 	t_env *env;
 	t_env *tmp;
@@ -16,7 +16,7 @@ void	free_env()
 	}
 }
 
-void	free_rdir(t_rdir *rdir)
+static void	free_rdir(t_rdir *rdir)
 {
 	if (rdir)
 	{
@@ -25,7 +25,7 @@ void	free_rdir(t_rdir *rdir)
 	}
 }
 
-void	free_cmd()
+void		free_cmd()
 {
 	t_cmd	*cmd;
 	t_cmd	*tmp;
@@ -39,17 +39,18 @@ void	free_cmd()
 		{
 			i = -1;
 			while (cmd->argv[++i])
-				free(cmd->argv[i]
+				free(cmd->argv[i]);
 			free(cmd->argv);
 		}
-		free_rdir(rdir->in);
-		free_rdir(t_rdir->out);
-		free_rdir(t_rdir->out_dbl);
+		free_rdir(cmd->in);
+		free_rdir(cmd->out);
+		free_rdir(cmd->out_dbl);
 		cmd = tmp;
 	}
 }
 
-void	free_all()
+void		free_all()
 {
-
+	free_cmd();
+	free_env();
 }

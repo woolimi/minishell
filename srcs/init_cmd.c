@@ -74,37 +74,6 @@ static int get_key(char key[], char *arg)
 	return (i);
 }
 
-static char *change_env_to_value(char *arg)
-{
-	char buff[1024];
-	char key[100];
-	char *value;
-	int i;
-
-	ft_memset(buff, 0, 1024);
-	i = 0;
-	while (*arg)
-	{
-		if (*arg == '$' && *(arg + 1) == '?')
-		{
-			i = ft_strlcat(buff, ft_itoa(get_minish()->excode), sizeof(buff));
-			arg += 2;
-		}
-		else if (*arg != '$' ||
-			(*arg == '$' && (!*(arg + 1) || *(arg + 1) == ' ')))
-			buff[i] = *arg++;
-		else
-		{
-			arg += get_key(key, ++arg);
-			value = lst_find_env(key);
-			i = ft_strlcat(buff, value, sizeof(buff));
-		}
-		i++;
-	}
-	buff[i] = '\0';
-	return ft_strdup(buff);
-}
-
 static void	lst_add_argv_cmd(t_cmd *cmd, char *arg)
 {
 	t_cmd	*last;
@@ -121,7 +90,7 @@ static void	lst_add_argv_cmd(t_cmd *cmd, char *arg)
 		new_arr[i] = last->argv[i];
 		i++;
 	}
-	new_arr[i] = change_env_to_value(arg);
+	new_arr[i] = arg;
 	new_arr[cnt + 1] = NULL;
 	free(last->argv);
 	last->argv = new_arr;
