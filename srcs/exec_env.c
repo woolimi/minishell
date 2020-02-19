@@ -1,14 +1,7 @@
 #include "minishell.h"
 
-void	exec_env(t_cmd *cmd)
+static void print_env(t_env *env)
 {
-	t_env *env;
-
-	if (cmd->is_rdir)
-	{
-		// dup, dup2
-	}
-	env = get_minish()->env;
 	while (env)
 	{
 		ft_putstr(env->key);
@@ -17,5 +10,16 @@ void	exec_env(t_cmd *cmd)
 		ft_putstr("\n");
 		env = env->next;
 	}
-	// backup dup, dup2
+}
+
+int	exec_env(t_cmd *cmd)
+{
+	t_env *env;
+
+	if (cmd->argv[1])
+	{
+		/* need to add */
+	}
+	print_env(get_minish()->env);
+	return (EXIT_SUCCESS);
 }

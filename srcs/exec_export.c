@@ -4,7 +4,7 @@
  ** args : { "export", "KEY1=value1", "KEY2=value2" } 
  */
 
-void	exec_export(t_cmd *cmd)
+int	exec_export(t_cmd *cmd)
 {
 	char *key;
 	int i;
@@ -37,5 +37,6 @@ void	exec_export(t_cmd *cmd)
 		}
 		i++;
 	}*/
+	return (EXIT_SUCCESS);
 }
 
