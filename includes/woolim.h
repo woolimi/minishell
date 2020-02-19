@@ -34,6 +34,7 @@ typedef struct s_minish
 	t_env	*env;
 	t_cmd	*cmd;
 	int		executed;
+	int 	excode;
 } t_minish;
 
 t_minish *get_minish(void);
@@ -71,5 +72,6 @@ int too_many_arg_error(char *cmd, int ret);
 void	exec_cd(t_cmd *cmd);
 void	exec_echo(t_cmd *cmd);
 int	file_too_long(char *cmd, char *file, int ret);
+char *lst_find_env(char *key);
 
 #endif
