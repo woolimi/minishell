@@ -18,22 +18,26 @@ int is_built_in(char *arg)
 
 int exec_built_in(int btin_nb, t_cmd *cmd)
 {
+	int ret;
+
+	ret = -1;
 	redirection(cmd);
 	if (btin_nb == 0)
-		return (exec_echo(cmd));
+		ret = exec_echo(cmd);
 	else if (btin_nb == 1)
-		return (exec_cd(cmd));
+		ret = exec_cd(cmd);
 	else if (btin_nb == 2)
-		return (exec_pwd(cmd));
+		ret = exec_pwd(cmd);
 	else if (btin_nb == 3)
-		return (exec_export(cmd));
+		ret = exec_export(cmd);
 	else if (btin_nb == 4)
-		return (exec_unset(cmd));
+		ret = exec_unset(cmd);
 	else if (btin_nb == 5)
-		return (exec_env(cmd));
+		ret = exec_env(cmd);
 	else if (btin_nb == 6)
-		return (exec_exit(cmd));
+		ret = exec_exit(cmd);
 	close_redirection(cmd);
+	return (ret);
 }
 
 void	exec_command(void)

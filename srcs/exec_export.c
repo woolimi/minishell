@@ -4,7 +4,6 @@
  ** args : { "export", "KEY1=value1", "KEY2=value2" } 
  */
 
-/*
 void idententifier_error(char *ident)
 {
 	ft_putstr_fd("minishell: export: `", 2);
@@ -12,7 +11,7 @@ void idententifier_error(char *ident)
 	ft_putstr_fd("': not a valid identifier", 2);
 	ft_putstr_fd("\n", 2);
 }
-*/
+
 int	exec_export(t_cmd *cmd)
 {
 	int i;
@@ -20,7 +19,7 @@ int	exec_export(t_cmd *cmd)
 	int copy;
 
 	i = 0;
-	/*while (cmd->argv[++i])
+	while (cmd->argv[++i])
 	{
 		end = 0;
 		copy = 1;
@@ -38,9 +37,7 @@ int	exec_export(t_cmd *cmd)
 				lst_check_and_add_env(cmd->argv[i], &cmd->argv[i][end]);
 			}
 		}
-
-		i++;
-	}*/
+	}
 	return (EXIT_SUCCESS);
 }
 

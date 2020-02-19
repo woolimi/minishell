@@ -30,8 +30,8 @@
 # include "woolim.h"
 # include <string.h>
 # include <errno.h>
-# include <term.h>
-# include <curses.h>
+//# include <term.h>
+//# include <curses.h>
 //DEBUG
 # include <stdio.h>
 
