@@ -38,9 +38,16 @@ typedef struct s_minish
 } t_minish;
 
 t_minish *get_minish(void);
-void exec_env(t_cmd *cmd);
-void exec_unset(t_cmd *cmd);
-void exec_export(t_cmd *cmd);
+
+int is_built_in(char *arg);
+int exec_built_in(int btin_nb, t_cmd *cmd);
+int exec_env(t_cmd *cmd);
+int exec_unset(t_cmd *cmd);
+int exec_export(t_cmd *cmd);
+int exec_exit(t_cmd *cmd);
+int exec_pwd(t_cmd *cmd);
+int	exec_cd(t_cmd *cmd);
+int	exec_echo(t_cmd *cmd);
 
 void init_env_list(char **env);
 void lst_remove_env(char *key);
@@ -60,18 +67,15 @@ void	exec_command(void);
 char **get_built_in(void);
 int no_exec_error(char *cmd, int ret);
 void exec_non_built_in(t_cmd *cmd);
-void exec_exit(t_cmd *cmd);
 int no_file_error(char *cmd, char *file, int ret);
 void redirection(t_cmd *cmd);
 void close_redirection(t_cmd *cmd);
 t_cmd *piping(t_cmd *cmd);
-int is_built_in(char *arg);
-void exec_built_in(int btin_nb, t_cmd *cmd);
-void exec_pwd(t_cmd *cmd);
 int too_many_arg_error(char *cmd, int ret);
-void	exec_cd(t_cmd *cmd);
-void	exec_echo(t_cmd *cmd);
 int	file_too_long(char *cmd, char *file, int ret);
 char *lst_find_env(char *key);
+void get_exit_code(int status, int excode);
+int count_arg(char **argv);
+int numeric_arg_error(char *cmd, char *file, int ret);
 
 #endif

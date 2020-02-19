@@ -45,6 +45,19 @@ static void close_pipes(int pipes[], int nb)
 ** 2 pipe : 3 child 
 */
 
+void get_exit_code(int status, int excode)
+{
+	if (excode == -1)
+	{
+		if (WIFEXITED(status))
+			get_minish()->excode = WEXITSTATUS(status);
+		else if (WIFSIGNALED(status))
+			get_minish()->excode = 128 + WTERMSIG(status);
+	}
+	else
+		get_minish()->excode = excode;	
+}
+
 static void	wait_status(int nb)
 {
 	int i;
@@ -54,6 +67,7 @@ static void	wait_status(int nb)
 	while (i < nb + 1)
 	{
 		wait(&status);
+		get_exit_code(status, NO_EXCODE);
 		i++;
 	}
 }
@@ -74,16 +88,15 @@ t_cmd *piping(t_cmd *cmd)
 	{
 		if ((cpid = fork()) == 0)
 		{
+			signal(SIGINT, SIG_DFL);
+			signal(SIGQUIT, SIG_DFL);
 			if (i < nb)
 				dup2(pipes[i * 2 + 1], 1);
 			if (i > 0)
 				dup2(pipes[(i - 1) * 2], 0);
 			close_pipes(pipes, nb);
 			if ((btin_nb = is_built_in(cmd->argv[0])) != -1)
-			{
-				exec_built_in(btin_nb, cmd);
-				exit(0);
-			}
+				exit(exec_built_in(btin_nb, cmd));
 			exec_non_built_in(cmd);
 		} else if (cpid == -1)
 		{

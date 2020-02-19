@@ -16,23 +16,23 @@ int is_built_in(char *arg)
 	return (-1);
 }
 
-void exec_built_in(int btin_nb, t_cmd *cmd)
+int exec_built_in(int btin_nb, t_cmd *cmd)
 {
 	redirection(cmd);
 	if (btin_nb == 0)
-		exec_echo(cmd);
+		return (exec_echo(cmd));
 	else if (btin_nb == 1)
-		exec_cd(cmd);
+		return (exec_cd(cmd));
 	else if (btin_nb == 2)
-		exec_pwd(cmd);
+		return (exec_pwd(cmd));
 	else if (btin_nb == 3)
-		exec_export(cmd);
+		return (exec_export(cmd));
 	else if (btin_nb == 4)
-		exec_unset(cmd);
+		return (exec_unset(cmd));
 	else if (btin_nb == 5)
-		exec_env(cmd);
+		return (exec_env(cmd));
 	else if (btin_nb == 6)
-		exec_exit(cmd);
+		return (exec_exit(cmd));
 	close_redirection(cmd);
 }
 
@@ -55,15 +55,22 @@ void	exec_command(void)
 		else
 		{
 			if ((btin_nb = is_built_in(cmd->argv[0])) != -1)
-				exec_built_in(btin_nb, cmd);
+				get_exit_code(NO_STATUS, exec_built_in(btin_nb, cmd));
 			else
 			{
 				if ((child_pid = fork()) == -1)
 				{ /* fork failed error */}
 				else if (child_pid == 0)
+				{
+					signal(SIGINT, SIG_DFL);
+					signal(SIGQUIT, SIG_DFL);
 					exec_non_built_in(cmd);
+				}
 				else if (child_pid > 0)
+				{
 					wait(&status);
+					get_exit_code(status, NO_EXCODE);
+				}
 			}
 		}
 		cmd = cmd->next;

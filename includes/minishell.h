@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 18:11:12 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/17 19:21:36 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/19 12:51:04 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # define SEP "<>|;"
 # define SPACE " \t"
 # define PATH_MAX 1024
+# define NO_EXCODE -1
+# define NO_STATUS -1
 
 # include "../lib/libft/libft.h"
 # include <unistd.h>
@@ -28,8 +30,8 @@
 # include "woolim.h"
 # include <string.h>
 # include <errno.h>
-
-
+# include <term.h>
+# include <curses.h>
 //DEBUG
 # include <stdio.h>
 

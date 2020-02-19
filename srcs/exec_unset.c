@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-void	exec_unset(t_cmd *cmd)
+int	exec_unset(t_cmd *cmd)
 {
 	int i;
 
@@ -10,4 +10,5 @@ void	exec_unset(t_cmd *cmd)
 		lst_remove_env(cmd->argv[i]);
 		i++;
 	}
+	return (EXIT_SUCCESS);
 }
