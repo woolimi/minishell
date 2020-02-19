@@ -57,7 +57,8 @@ int	main(int ac, char **av, char **env)
 			ft_putstr("\n");
 			exit(0);
 		}
-		tokens = lexing(minish->line);
+		if (!(tokens = lexing(minish->line)))
+			continue ;
 		if (!init_cmd_list(tokens))
 		{
 			// free line, token, cmd
