@@ -1,28 +1,41 @@
 #include "minishell.h"
 
 /*
-** args : { "export", "KEY1=value1", "KEY2=value2" } 
-*/
+ ** args : { "export", "KEY1=value1", "KEY2=value2" } 
+ */
 
 void	exec_export(t_cmd *cmd)
 {
+	char *key;
 	int i;
-	char **cut;
+	int end;
+	char *tmp;
 
 	i = 1;
-	while (cmd->argv[i])
-	{		
-		if (ft_strchr(cmd->argv[i], ' '))
+	/*while (cmd->argv[i])
+	{
+		end = 0;
+		if (ft_strchr(cmd->argv[i], '='))
 		{
-			// minishell: export: 'cmd->argv[i]': not a valide identifier
-			return ;
+			if (cmd->argv[i][0] == '=')
+			{
+				printf("bash: export: `==gots': not a valid identifier");
+				return ;
+			}
+			while (cmd->argv[i][end] != '=')
+			{
+				if (cmd->argv[i][end] == ' ')
+				{
+					printf("bash: export: `cou cou=gots': not a valid identifier");
+					return ;
+				}
+				end++;
+			}
+			cmd->argv[i][end] = '\0';
+			end++;
+			lst_check_and_add_env(cmd->argv[i], &cmd->argv[i][end]);
 		}
-		if (cmd->argv[i][0] != '=' && ft_strchr(cmd->argv[i], '='))
-		{
-			cut = ft_split(cmd->argv[i], '=');
-			lst_check_and_add_env(cut[0], cut[1]);
-			free(cut);
-			return ;
-		}
-	}
+		i++;
+	}*/
 }
+
