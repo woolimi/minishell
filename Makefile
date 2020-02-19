@@ -6,12 +6,12 @@
 #    By: wpark <wpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/02/18 18:45:05 by wpark            ###   ########.fr        #
+#    Updated: 2020/02/19 01:15:04 by wpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = -g3
+FLAGS = 
 SRC_NAME = main.c \
 		error.c \
 		exec_cd.c \
