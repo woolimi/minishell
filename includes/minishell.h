@@ -55,6 +55,6 @@ void	free_env();
 void	free_cmd();
 void	free_all();
 
-char	*change_env_to_value(char*arg);
+void	quotes_check(char** tks, int i, int j);
 
 #endif
