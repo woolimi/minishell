@@ -60,20 +60,6 @@ static int		count_arr(char **arr)
 	return (i);
 }
 
-static int get_key(char key[], char *arg)
-{
-	int i;
-
-	i = 0;
-	while (arg[i] && arg[i] != ' ' && arg[i] != '$')
-	{
-		key[i] = arg[i];
-		i++;
-	}
-	key[i] = '\0';
-	return (i);
-}
-
 static void	lst_add_argv_cmd(t_cmd *cmd, char *arg)
 {
 	t_cmd	*last;
