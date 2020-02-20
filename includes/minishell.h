@@ -48,4 +48,13 @@ int		jump_space(char *line, int i, int jmp);
 int		check_sep(char *line, int i, int use);
 int		jmp_quotes(char *line, int i);
 
+/*
+**	free_1.c
+*/
+void	free_env();
+void	free_cmd();
+void	free_all();
+
+void	quotes_check(char** tks, int i, int j);
+
 #endif
