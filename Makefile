@@ -6,12 +6,12 @@
 #    By: wpark <wpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/02/22 18:18:40 by wpark            ###   ########.fr        #
+#    Updated: 2020/02/22 20:11:24 by wpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = -ggdb3
+FLAGS = -Wall -Wextra -Werror
 SRC_NAME = main.c \
 		error.c \
 		exec_cd.c \
