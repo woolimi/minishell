@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 18:11:12 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/19 12:51:04 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/22 15:25:12 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int		jmp_quotes(char *line, int i);
 */
 void	free_env();
 void	free_cmd();
-void	free_all();
+void free_all();
 
 void	quotes_check(char** tks, int i, int j);
 

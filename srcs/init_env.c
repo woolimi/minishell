@@ -15,11 +15,12 @@ void	init_env_list(char **env)
 		if (i == 0)
 		{
 			minish->env = lst_new_env(cut[0], cut[1]);
-			minish->env->key = cut[0];
-			minish->env->value = cut[1];
 		}
 		else
 			lst_add_env(minish->env, cut[0], cut[1]);
+		free(cut[0]);
+		free(cut[1]);
+		free(cut);
 		i++;
 	}
 }

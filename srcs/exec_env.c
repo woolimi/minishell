@@ -14,8 +14,7 @@ static void print_env(t_env *env)
 
 int	exec_env(t_cmd *cmd)
 {
-	t_env *env;
-
+	(void)cmd;
 	print_env(get_minish()->env);
 	return (EXIT_SUCCESS);
 }

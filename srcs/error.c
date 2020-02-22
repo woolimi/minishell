@@ -14,6 +14,7 @@ int no_exec_error(char *cmd, int ret)
 	ft_putstr_fd("minishell: command not found: ", 2);
 	ft_putstr_fd(cmd, 2);
 	ft_putstr_fd("\n", 2);
+	free_all();
 	return (ret);
 }
 
@@ -26,8 +27,8 @@ int no_file_error(char *cmd, char *file, int ret)
 		ft_putstr_fd(": ", 2);
 		ft_putstr_fd(file, 2);
 	}
-	ft_putstr_fd(": No such file or directory: ", 2);
-	ft_putstr_fd("\n", 2);
+	ft_putstr_fd(": No such file or directory\n", 2);
+	free_all();
 	return (ret);
 }
 
@@ -57,4 +58,11 @@ int numeric_arg_error(char *cmd, char *file, int ret)
 	ft_putstr_fd(file, 2);
 	ft_putstr_fd(": numeric argument required\n", 2);
 	return (ret);
+}
+
+void fatal_error(void)
+{
+	ft_putstr_fd("minishell: fatal error\n", 2);
+	free_all();
+	exit(EXIT_FAILURE);
 }

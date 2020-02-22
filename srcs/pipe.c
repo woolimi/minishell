@@ -79,7 +79,7 @@ t_cmd *piping(t_cmd *cmd)
 	int i;
 	int cpid;
 	int btin_nb;
-	int status;
+	int ret;
 
 	nb = count_pipes(cmd);
 	create_pipes(pipes, nb);
@@ -96,12 +96,14 @@ t_cmd *piping(t_cmd *cmd)
 				dup2(pipes[(i - 1) * 2], 0);
 			close_pipes(pipes, nb);
 			if ((btin_nb = is_built_in(cmd->argv[0])) != -1)
-				exit(exec_built_in(btin_nb, cmd));
+			{
+				ret = exec_built_in(btin_nb, cmd);
+				free_all();
+				exit(ret);
+			}
 			exec_non_built_in(cmd);
 		} else if (cpid == -1)
-		{
-			// error
-		}
+			fatal_error();
 		cmd = cmd->next;
 		i++;
 	}

@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:34 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/16 22:18:02 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/22 14:58:28 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,8 @@ static char	*change_env_to_value(char *arg)
 			buff[i] = *arg++;
 		else
 		{
-			arg += get_key(key, ++arg);
+			arg++;
+			arg += get_key(key, arg);
 			value = lst_find_env(key);
 			i = ft_strlcat(buff, value, sizeof(buff));
 		}

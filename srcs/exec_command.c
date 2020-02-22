@@ -44,7 +44,7 @@ void	exec_command(void)
 {
 	t_cmd* cmd;
 	int		btin_nb;
-	int 	child_pid;
+	pid_t 	child_pid;
 	int 	status;
 
 	cmd = get_minish()->cmd;
@@ -63,12 +63,13 @@ void	exec_command(void)
 			else
 			{
 				if ((child_pid = fork()) == -1)
-				{ /* fork failed error */}
+					fatal_error();
 				else if (child_pid == 0)
 				{
 					signal(SIGINT, SIG_DFL);
 					signal(SIGQUIT, SIG_DFL);
 					exec_non_built_in(cmd);
+					exit(0);
 				}
 				else if (child_pid > 0)
 				{

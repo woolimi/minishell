@@ -35,6 +35,7 @@ typedef struct s_minish
 	t_cmd	*cmd;
 	int		executed;
 	int 	excode;
+	char	**tokens;
 } t_minish;
 
 t_minish *get_minish(void);
@@ -77,5 +78,6 @@ char *lst_find_env(char *key);
 void get_exit_code(int status, int excode);
 int count_arg(char **argv);
 int numeric_arg_error(char *cmd, char *file, int ret);
+void fatal_error(void);
 
 #endif

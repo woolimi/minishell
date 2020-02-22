@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 01:47:57 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/15 01:48:13 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/22 17:23:15 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,11 @@ static int extract(char **line, char **cache, int idx)
 		tmp = 0;
 	}
 	free_cache(cache, 0);
+	if (tmp && *tmp == '\0')
+	{
+		free(tmp);
+		tmp = 0;
+	}
 	*cache = tmp;
 	return (1);
 }

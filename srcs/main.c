@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/19 02:31:53 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/22 17:07:35 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,26 @@ void	signal_handler(int signo)
 	}
 }
 
+void read_line(void)
+{
+	t_minish *minish;
+	int ret;
+
+	minish = get_minish();
+	minish->line = 0;
+	ret = get_next_line(0, &(minish->line));
+	if (ret == 0)
+	{
+		ft_putstr("\n");
+		free_all();
+		exit(EXIT_SUCCESS);
+	}
+	if (ret == -1)
+		fatal_error();
+}
+
 int	main(int ac, char **av, char **env)
 {
-	char **tokens;
-	int ret;
 	t_minish	*minish;
 
 	if (!ac || !av || !env)
@@ -51,22 +67,14 @@ int	main(int ac, char **av, char **env)
 	while (1)
 	{
 		prompt_msg();
-		minish->line = 0;
-		if (!get_next_line(0, &(minish->line)))
+		read_line();
+		if (!(minish->tokens = lexing(minish->line)))
+			fatal_error();
+		if (!init_cmd_list(minish->tokens))
 		{
-			ft_putstr("\n");
-			free_all();
-			exit(0);
-		}
-		if (!(tokens = lexing(minish->line)))
-			continue ;
-		if (!init_cmd_list(tokens))
-		{
-			free(tokens);
 			free_cmd();
 			continue ;
 		}
-		free(tokens);
 		exec_command();
 		free_cmd();
 	}
