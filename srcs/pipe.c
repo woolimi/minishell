@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/22 21:37:28 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/22 21:38:20 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-static int count_pipes(t_cmd *begin)
+static int
+	count_pipes(t_cmd *begin)
 {
 	int i;
 
@@ -16,7 +29,8 @@ static int count_pipes(t_cmd *begin)
 	return (i);
 }
 
-static int	create_pipes(int pipes[], int nb)
+static int
+	create_pipes(int pipes[], int nb)
 {
 	int i;
 
@@ -30,7 +44,8 @@ static int	create_pipes(int pipes[], int nb)
 	return (1);
 }
 
-static void close_pipes(int pipes[], int nb)
+static void
+	close_pipes(int pipes[], int nb)
 {
 	int i;
 
@@ -45,7 +60,8 @@ static void close_pipes(int pipes[], int nb)
 ** 2 pipe : 3 child 
 */
 
-void get_exit_code(int status, int excode)
+void
+	get_exit_code(int status, int excode)
 {
 	if (excode == -1)
 	{
@@ -58,7 +74,8 @@ void get_exit_code(int status, int excode)
 		get_minish()->excode = excode;	
 }
 
-static void	wait_status(int nb)
+static void
+	wait_status(int nb)
 {
 	int i;
 	int status;
@@ -72,7 +89,8 @@ static void	wait_status(int nb)
 	}
 }
 
-t_cmd *piping(t_cmd *cmd)
+t_cmd
+	*piping(t_cmd *cmd)
 {
 	int pipes[count_pipes(cmd) * 2];
 	int nb;

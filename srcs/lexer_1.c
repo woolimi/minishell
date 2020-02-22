@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_1.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:42 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/15 18:43:44 by froussel         ###   ########.fr       */
+/*   Updated: 2020/02/22 21:37:03 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"//change me
+#include "minishell.h"
 
 static int	count_params(char *line)
 {
@@ -105,32 +105,32 @@ char		**lexing(char *line)
 }
 
 /*
-   int main()
-   {
-
-   char **tk;
-   int i = 0;
-//tk = lexing("file>tata");
-//tk = lexing("cat salut\";o;g; ;s;h;i;t\" tout; le monde je ;vais");
-//tk = lexing("echo dsf\"fds\"fds 	");
-//tk = lexing("echo \"fsd   fds\" sfd 	; echo lol");
-//tk = lexing("echo>>nana");
-//tk = lexing("file>tata");
-//tk = lexing("   file>>tata;  ");
-//tk = lexing("> putain");
-//tk = lexing("");
-//tk = lexing("echo \"couc\"o\"\"");
-//tk = lexing("echo \"'couc'\"o\"'\"");
-//tk = lexing("e\"\"\"\"\"cho\" salut");
-//tk = lexing("ifconfig -a | grep ether | sed \"s/ether //g\" | sed \"s/  //g\" | sed \"s/ //g\"");
-tk = lexing("ifconfig -a | grep ether | sed \"s/ether //g\" | sed s/  //g\" | sed \"s/ //g\"");
-while(tk[i])
-{
-printf("i=%d (%s)\n", i, tk[i]);
-free(tk[i]);
-i++;
-}
-free(tk);
-while (1);
-}
- */
+** int main()
+** {
+** 	char **tk;
+** 	int i = 0;
+** 	tk = lexing("file>tata");
+** 	tk = lexing("cat salut\";o;g; ;s;h;i;t\" tout; le monde je ;vais");
+** 	tk = lexing("echo dsf\"fds\"fds 	");
+** 	tk = lexing("echo \"fsd   fds\" sfd 	; echo lol");
+** 	tk = lexing("echo>>nana");
+** 	tk = lexing("file>tata");
+** 	tk = lexing("   file>>tata;  ");
+** 	tk = lexing("> putain");
+** 	tk = lexing("");
+** 	tk = lexing("echo \"couc\"o\"\"");
+** 	tk = lexing("echo \"'couc'\"o\"'\"");
+** 	tk = lexing("e\"\"\"\"\"cho\" salut");
+** 	tk = lexing("ifconfig -a | grep ether | sed \"s/ether //g\" | sed \"s/  //g\" | sed \"s/ //g\"");
+** 	tk = lexing("ifconfig -a | grep ether | sed \"s/ether //g\" | sed s/  //g\" | sed \"s/ //g\"");
+** 
+** 	while(tk[i])
+** 	{
+** 		printf("i=%d (%s)\n", i, tk[i]);
+** 		free(tk[i]);
+** 		i++;
+** 	}
+** 	free(tk);
+** 	while (1);
+** } 
+*/

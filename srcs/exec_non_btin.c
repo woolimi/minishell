@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_non_btin.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/22 21:33:54 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/22 22:34:46 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static char **create_path_arr(void)
@@ -45,25 +57,22 @@ void	exec_non_built_in(t_cmd *cmd)
 	
 	if (cmd->is_rdir)
 		redirection(cmd);
-	if (!cmd->has_path)
-	{
-		path_arr = create_path_arr();
-		i = 0;
-		while (path_arr[i])
-		{
-			path_cmd1 = ft_strjoin(path_arr[i], "/");
-			path_cmd2 = ft_strjoin(path_cmd1, cmd->argv[0]);
-			execve(path_cmd2, cmd->argv, NULL);
-			free(path_cmd1);
-			free(path_cmd2);
-			i++;
-		}
-		free_path_arr(path_arr);
-		exit(no_exec_error(cmd->argv[0], 127));
-	}
-	else
+	if (cmd->has_path)
 	{
 		execve(cmd->argv[0], cmd->argv, NULL);
 		exit(no_file_error(cmd->argv[0], NULL, 127));
 	}
+	path_arr = create_path_arr();
+	i = 0;
+	while (path_arr[i])
+	{
+		path_cmd1 = ft_strjoin(path_arr[i], "/");
+		path_cmd2 = ft_strjoin(path_cmd1, cmd->argv[0]);
+		execve(path_cmd2, cmd->argv, NULL);
+		free(path_cmd1);
+		free(path_cmd2);
+		i++;
+	}
+	free_path_arr(path_arr);
+	exit(no_exec_error(cmd->argv[0], 127));
 }

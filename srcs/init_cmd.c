@@ -1,22 +1,34 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_cmd.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/22 20:35:39 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/22 20:51:15 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 /*
 ** tokens = { "cat", "Makefile", ">", "file.txt", "|", ...}
-** 
+**
 ** typedef struct	s_cmd
 ** {
-** 	char	**argv; // { "cat", "Makefile" , NULL}
-** 	int		is_pipe;	// 1
-** 	int		is_rdir;	// 1
-** 	t_rdir	*in;
-** 	t_rdir	*out;	// file = file.txt, fd = open()
-** 	t_rdir	*out_dbl;
-** 	struct s_cmd *next;
+** 	char			**argv;		// { "cat", "Makefile" , NULL}
+** 	int				is_pipe;	// 1
+** 	int				is_rdir;	// 1
+** 	t_rdir			*in;
+** 	t_rdir			*out;		// file = file.txt, fd = open()
+**	t_rdir			*out_dbl;
+** 	struct s_cmd 	*next;
 ** }				t_cmd;
-** 
 */
 
-static void	lst_add_ispipe_cmd(t_cmd *cmd)
+static void
+	lst_add_ispipe_cmd(t_cmd *cmd)
 {
 	t_cmd *last;
 
@@ -24,7 +36,8 @@ static void	lst_add_ispipe_cmd(t_cmd *cmd)
 	last->is_pipe = 1;
 }
 
-static void	lst_add_redir_cmd(t_cmd *cmd, char *redir, char *file)
+static void
+	lst_add_redir_cmd(t_cmd *cmd, char *redir, char *file)
 {
 	t_cmd *last;
 
@@ -50,7 +63,8 @@ static void	lst_add_redir_cmd(t_cmd *cmd, char *redir, char *file)
 	}
 }
 
-static int		count_arr(char **arr)
+static int
+	count_arr(char **arr)
 {
 	int i;
 
@@ -60,7 +74,8 @@ static int		count_arr(char **arr)
 	return (i);
 }
 
-static void	lst_add_argv_cmd(t_cmd *cmd, char *arg)
+static void
+	lst_add_argv_cmd(t_cmd *cmd, char *arg)
 {
 	t_cmd	*last;
 	int		cnt;
@@ -82,16 +97,16 @@ static void	lst_add_argv_cmd(t_cmd *cmd, char *arg)
 	last->argv = new_arr;
 }
 
-int	init_cmd_list(char **tokens)
+int
+	init_cmd_list(char **tokens)
 {
-	t_minish *minish;
-	int i;
-	int fnew;
+	t_minish	*minish;
+	int			i;
+	int			fnew;
 
 	if (!ck_tokens(tokens))
 		return (0);
 	minish = get_minish();
-	minish->cmd = 0;
 	i = 0;
 	fnew = 1;
 	while (tokens[i])
@@ -102,11 +117,8 @@ int	init_cmd_list(char **tokens)
 			lst_add_ispipe_cmd(minish->cmd);
 		else if (is_redir(tokens[i]) && (i++))
 			lst_add_redir_cmd(minish->cmd, tokens[i - 1], tokens[i]);
-		else if (ft_strequ(tokens[i], ";") && (fnew = 1))
-		{
-			i++;
+		else if (ft_strequ(tokens[i], ";") && (fnew = 1) && (i++))
 			continue;
-		}
 		else
 			lst_add_argv_cmd(minish->cmd, tokens[i]);
 		i++;

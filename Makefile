@@ -6,14 +6,15 @@
 #    By: wpark <wpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/02/22 20:11:24 by wpark            ###   ########.fr        #
+#    Updated: 2020/02/22 21:32:38 by wpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 SRC_NAME = main.c \
-		error.c \
+		error_1.c \
+		error_2.c \
 		exec_cd.c \
 		exec_command.c \
 		exec_echo.c \

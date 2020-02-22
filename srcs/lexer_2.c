@@ -6,11 +6,11 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:34 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/16 22:18:02 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/22 21:36:54 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"//change me
+#include "minishell.h"
 
 int		jump_space(char *line, int i, int jmp)
 {

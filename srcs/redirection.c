@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   redirection.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/22 21:37:32 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/22 22:36:36 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-static int check_file_exist(t_cmd *cmd, char *file)
+static int
+	check_file_exist(t_cmd *cmd, char *file)
 {
 	int fd;
 
@@ -11,7 +24,8 @@ static int check_file_exist(t_cmd *cmd, char *file)
 	return (1);
 }
 
-static int open_out_file(t_cmd *cmd, char *file, int is_double)
+static int
+	open_out_file(t_cmd *cmd, char *file, int is_double)
 {
 	int fd;
 
@@ -28,7 +42,8 @@ static int open_out_file(t_cmd *cmd, char *file, int is_double)
 	return (1);
 }
 
-void redirection(t_cmd *cmd)
+void
+	redirection(t_cmd *cmd)
 {
 	if (cmd->in && (check_file_exist(cmd, cmd->in->file)))
 	{
@@ -50,7 +65,8 @@ void redirection(t_cmd *cmd)
 	}
 }
 
-void close_redirection(t_cmd *cmd)
+void
+	close_redirection(t_cmd *cmd)
 {
 	if (cmd->in)
 	{
