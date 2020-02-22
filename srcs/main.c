@@ -6,18 +6,18 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/22 17:07:35 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/22 20:19:37 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	prompt_msg(void)
+static void	prompt_msg(void)
 {
 	ft_putstr("\033[32mMINISHELL\033[0m$ ");
 }
 
-void	signal_handler(int signo)
+static void	signal_handler(int signo)
 {
 	if (signo == SIGINT)
 	{
@@ -36,7 +36,7 @@ void	signal_handler(int signo)
 	}
 }
 
-void read_line(void)
+static void read_line(void)
 {
 	t_minish *minish;
 	int ret;
