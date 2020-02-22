@@ -55,6 +55,7 @@ int	main(int ac, char **av, char **env)
 		if (!get_next_line(0, &(minish->line)))
 		{
 			ft_putstr("\n");
+			free_all();
 			exit(0);
 		}
 		if (!(tokens = lexing(minish->line)))

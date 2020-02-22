@@ -39,7 +39,7 @@ void	exec_non_built_in(t_cmd *cmd)
 	char *path_cmd1;
 	char *path_cmd2;
 	int	i;
-
+	
 	if (cmd->is_rdir)
 		redirection(cmd);
 	if (!cmd->has_path)
@@ -50,17 +50,19 @@ void	exec_non_built_in(t_cmd *cmd)
 		{
 			path_cmd1 = ft_strjoin(path_arr[i], "/");
 			path_cmd2 = ft_strjoin(path_cmd1, cmd->argv[0]);
-			execve(path_cmd2, cmd->argv, NULL);
+			execve(path_cmd2, cmd->argv, NULL);//if work: program stop and leaks issue ??:
 			free(path_cmd1);
 			free(path_cmd2);
 			i++;
 		}
+		free_all();
 		free_path_arr(path_arr);
 		exit(no_exec_error(cmd->argv[0], 127));
 	}
 	else
 	{
-		execve(cmd->argv[0], cmd->argv, NULL);
+		execve(cmd->argv[0], cmd->argv, NULL);;//if work: program stop and leaks issue ??:
+		free_all();
 		exit(no_file_error(cmd->argv[0], NULL, 127));
 	}
 }
