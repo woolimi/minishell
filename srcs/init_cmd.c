@@ -76,7 +76,7 @@ static void	lst_add_argv_cmd(t_cmd *cmd, char *arg)
 		new_arr[i] = last->argv[i];
 		i++;
 	}
-	new_arr[i] = arg;
+	new_arr[i] = ft_strdup(arg);
 	new_arr[cnt + 1] = NULL;
 	free(last->argv);
 	last->argv = new_arr;
@@ -102,11 +102,8 @@ int	init_cmd_list(char **tokens)
 			lst_add_ispipe_cmd(minish->cmd);
 		else if (is_redir(tokens[i]) && (i++))
 			lst_add_redir_cmd(minish->cmd, tokens[i - 1], tokens[i]);
-		else if (ft_strequ(tokens[i], ";") && (fnew = 1))
-		{
-			i++;
+		else if (ft_strequ(tokens[i], ";") && (fnew = 1) && (i++))
 			continue;
-		}
 		else
 			lst_add_argv_cmd(minish->cmd, tokens[i]);
 		i++;

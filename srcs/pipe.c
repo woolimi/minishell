@@ -99,9 +99,7 @@ t_cmd *piping(t_cmd *cmd)
 				exit(exec_built_in(btin_nb, cmd));
 			exec_non_built_in(cmd);
 		} else if (cpid == -1)
-		{
-			// error
-		}
+			fatal_error_exit();
 		cmd = cmd->next;
 		i++;
 	}

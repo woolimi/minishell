@@ -1,32 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   error_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 10:34:03 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/23 02:12:37 by wpark            ###   ########.fr       */
+/*   Created: 2020/02/22 21:32:26 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/22 21:32:27 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "minishell.h"
 
-char	*ft_strdup(const char *s1)
+int numeric_arg_error(char *cmd, char *file, int ret)
 {
-	size_t	i;
-	char	*ret;
-
-	if (!s1)
-		return (0);
-	if (!(ret = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
-		return (0);
-	i = 0;
-	while (s1[i])
-	{
-		ret[i] = s1[i];
-		i++;
-	}
-	ret[i] = '\0';
+	ft_putstr_fd("minishell: ", 2);
+	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd(": ", 2);
+	ft_putstr_fd(file, 2);
+	ft_putstr_fd(": numeric argument required\n", 2);
 	return (ret);
+}
+
+void fatal_error(void)
+{
+	ft_putstr_fd("minishell: fatal error\n", 2);
+	free_all();
+	exit(EXIT_FAILURE);
 }

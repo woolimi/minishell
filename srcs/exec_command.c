@@ -63,7 +63,7 @@ void	exec_command(void)
 			else
 			{
 				if ((child_pid = fork()) == -1)
-				{ /* fork failed error */}
+					fatal_error_exit();
 				else if (child_pid == 0)
 				{
 					signal(SIGINT, SIG_DFL);

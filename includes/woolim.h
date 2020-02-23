@@ -31,6 +31,7 @@ typedef struct	s_cmd
 typedef struct s_minish
 {
 	char	*line;
+	char	**tokens;
 	t_env	*env;
 	t_cmd	*cmd;
 	int		executed;
@@ -77,5 +78,8 @@ char *lst_find_env(char *key);
 void get_exit_code(int status, int excode);
 int count_arg(char **argv);
 int numeric_arg_error(char *cmd, char *file, int ret);
+
+void fatal_error_exit(void);
+void eof_exit(void);
 
 #endif

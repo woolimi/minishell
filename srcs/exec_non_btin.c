@@ -55,14 +55,12 @@ void	exec_non_built_in(t_cmd *cmd)
 			free(path_cmd2);
 			i++;
 		}
-		free_all();
 		free_path_arr(path_arr);
 		exit(no_exec_error(cmd->argv[0], 127));
 	}
 	else
 	{
 		execve(cmd->argv[0], cmd->argv, NULL);;//if work: program stop and leaks issue ??:
-		free_all();
 		exit(no_file_error(cmd->argv[0], NULL, 127));
 	}
 }

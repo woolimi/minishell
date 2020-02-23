@@ -6,12 +6,12 @@
 #    By: wpark <wpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/02/19 01:15:04 by wpark            ###   ########.fr        #
+#    Updated: 2020/02/23 01:59:21 by wpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = 
+FLAGS = -g3 -fsanitize=address
 SRC_NAME = main.c \
 		error.c \
 		exec_cd.c \
@@ -33,6 +33,7 @@ SRC_NAME = main.c \
 		lst_env.c \
 		parser_1.c \
 		pipe.c \
+		quit.c \
 		redirection.c \
 		free_1.c
 

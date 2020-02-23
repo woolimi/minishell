@@ -7,7 +7,8 @@ t_env
 
 	new = malloc(sizeof(t_env));
 	new->key = ft_strdup(key);
-	new->value = ft_strdup(value);
+	if (value)
+		new->value = ft_strdup(value);
 	new->next = NULL;
 	return (new);
 }
