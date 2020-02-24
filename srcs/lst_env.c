@@ -69,6 +69,8 @@ void
 	{
 		if (ft_strequ(env->key, key))
 		{
+			if (env->value)
+				free(env->value);
 			env->value = ft_strdup(value);
 			return ;
 		}

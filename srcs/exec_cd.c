@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_cd.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 09:27:56 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/24 09:47:06 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-char	*lst_find_env(char *key)
+char
+	*lst_find_env(char *key)
 {
 	t_env	*env;
 
@@ -14,7 +27,8 @@ char	*lst_find_env(char *key)
 	return(NULL);
 }
 
-int count_arg(char **argv)
+int
+	count_arg(char **argv)
 {
 	int i;
 
@@ -24,7 +38,8 @@ int count_arg(char **argv)
 	return (i);
 }
 
-int	exec_cd(t_cmd *cmd)
+int
+	exec_cd(t_cmd *cmd)
 {
 	char cwd[PATH_MAX];
 	int cnt;
