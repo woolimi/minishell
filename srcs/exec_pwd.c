@@ -4,6 +4,7 @@ int exec_pwd(t_cmd *cmd)
 {
 	char cwd[PATH_MAX];
 	
+	(void)cmd;
 	if (!(getcwd(cwd, sizeof(cwd))))
 	{
 		ft_putstr_fd(strerror(errno), 2);

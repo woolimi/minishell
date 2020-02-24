@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/24 09:24:14 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/24 17:26:34 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ void	signal_handler(int signo)
 	}
 }
 
-static void read_line(void)
+static void
+	read_line(void)
 {
-	int ret;
-	t_minish *minish;
+	int			ret;
+	t_minish	*minish;
 	
 	minish = get_minish();
 	minish->line = 0;
@@ -53,7 +54,8 @@ static void read_line(void)
 		fatal_error_exit();
 }
 
-int	main(int ac, char **av, char **env)
+int
+	main(int ac, char **av, char **env)
 {
 	if (!ac || !av || !env)
 		return (0);

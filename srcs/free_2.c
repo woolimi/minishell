@@ -1,37 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_static.c                                       :+:      :+:    :+:   */
+/*   free_2.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/24 16:43:48 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 16:43:58 by wpark            ###   ########.fr       */
+/*   Created: 2020/02/24 16:36:55 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/24 16:41:28 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-t_minish
-	*get_minish(void)
+void
+	free_env(void)
 {
-	static t_minish	minish;
-		
-	return (&minish);
+	t_env *env;
+	t_env *tmp;
+
+	env = get_minish()->env;		
+	while (env)
+	{
+		tmp = env->next;
+		free(env->key);
+		free(env->value);
+		free(env);
+		env = tmp;
+	}
 }
 
-char
-	**get_built_in(void)
+void
+	free_all(void)
 {
-	static char* built_in[8] = {
-		"echo",
-		"cd",
-		"pwd",
-		"export",
-		"unset",
-		"env",
-		"exit",
-		NULL
-	};
-	return (built_in);
+	free_cmd();
+	free_env();
 }

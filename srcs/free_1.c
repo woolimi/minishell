@@ -1,22 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   free_1.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 16:36:09 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/24 16:38:42 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-void		free_env(void)
-{
-	t_env *env;
-	t_env *tmp;
-
-	env = get_minish()->env;		
-	while (env)
-	{
-		tmp = env->next;
-		free(env->key);
-		free(env->value);
-		free(env);
-		env = tmp;
-	}
-}
-
-static void	free_rdir(t_rdir *rdir)
+static void
+	free_rdir(t_rdir *rdir)
 {
 	if (rdir)
 	{
@@ -25,7 +22,8 @@ static void	free_rdir(t_rdir *rdir)
 	}
 }
 
-void free_tokens(void)
+static void
+	free_tokens(void)
 {
 	char **tokens;
 	int i;
@@ -41,7 +39,8 @@ void free_tokens(void)
 	}
 }
 
-void free_line(void)
+static void
+	free_line(void)
 {
 	char *line;
 
@@ -51,7 +50,8 @@ void free_line(void)
 	get_minish()->line = 0;
 }
 
-void		free_cmd()
+void
+	free_cmd(void)
 {
 	t_cmd	*cmd;
 	t_cmd	*tmp;
@@ -79,8 +79,3 @@ void		free_cmd()
 	get_minish()->cmd = 0;
 }
 
-void		free_all()
-{
-	free_cmd();
-	free_env();
-}

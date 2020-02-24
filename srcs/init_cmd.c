@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_cmd.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 16:47:07 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/24 16:47:07 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 /*
@@ -16,7 +28,8 @@
 ** 
 */
 
-static void	lst_add_ispipe_cmd(t_cmd *cmd)
+static void
+	lst_add_ispipe_cmd(t_cmd *cmd)
 {
 	t_cmd *last;
 
@@ -24,7 +37,8 @@ static void	lst_add_ispipe_cmd(t_cmd *cmd)
 	last->is_pipe = 1;
 }
 
-static void	lst_add_redir_cmd(t_cmd *cmd, char *redir, char *file)
+static void
+	lst_add_redir_cmd(t_cmd *cmd, char *redir, char *file)
 {
 	t_cmd *last;
 
@@ -50,7 +64,8 @@ static void	lst_add_redir_cmd(t_cmd *cmd, char *redir, char *file)
 	}
 }
 
-static int		count_arr(char **arr)
+static int
+	count_arr(char **arr)
 {
 	int i;
 
@@ -60,7 +75,8 @@ static int		count_arr(char **arr)
 	return (i);
 }
 
-static void	lst_add_argv_cmd(t_cmd *cmd, char *arg)
+static void
+	lst_add_argv_cmd(t_cmd *cmd, char *arg)
 {
 	t_cmd	*last;
 	int		cnt;
@@ -84,9 +100,9 @@ static void	lst_add_argv_cmd(t_cmd *cmd, char *arg)
 
 int	init_cmd_list(char **tokens)
 {
-	t_minish *minish;
-	int i;
-	int fnew;
+	t_minish	*minish;
+	int			i;
+	int			fnew;
 
 	if (!ck_tokens(tokens))
 		return (0);

@@ -33,30 +33,37 @@ static void	free_path_arr(char **path_arr)
 	free(path_arr);
 }
 
-void	exec_non_built_in(t_cmd *cmd)
+static void
+	exec_with_path(t_cmd *cmd, char **path_arr)
 {
-	char **path_arr;
 	char *path_cmd1;
 	char *path_cmd2;
 	int	i;
+
+	i = 0;
+	while (path_arr && path_arr[i])
+	{
+		path_cmd1 = ft_strjoin(path_arr[i], "/");
+		path_cmd2 = ft_strjoin(path_cmd1, cmd->argv[0]);
+		execve(path_cmd2, cmd->argv, NULL);//if work: program stop and leaks issue ??:
+		free(path_cmd1);
+		free(path_cmd2);
+		i++;
+	}
+}
+
+void	exec_non_built_in(t_cmd *cmd)
+{
+	char **path_arr;
 	
 	if (cmd->is_rdir)
 		redirection(cmd);
 	if (!cmd->has_path)
 	{
 		path_arr = create_path_arr();
-		i = 0;
-		while (path_arr[i])
-		{
-			path_cmd1 = ft_strjoin(path_arr[i], "/");
-			path_cmd2 = ft_strjoin(path_cmd1, cmd->argv[0]);
-			execve(path_cmd2, cmd->argv, NULL);//if work: program stop and leaks issue ??:
-			free(path_cmd1);
-			free(path_cmd2);
-			i++;
-		}
+		exec_with_path(cmd, path_arr);
 		free_path_arr(path_arr);
-		exit(no_exec_error(cmd->argv[0], 127));
+		exit(no_command_error(cmd->argv[0], 127));
 	}
 	else
 	{

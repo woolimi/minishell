@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_env.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 16:15:01 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/24 16:16:33 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static void print_env(t_env *env)
@@ -14,8 +26,7 @@ static void print_env(t_env *env)
 
 int	exec_env(t_cmd *cmd)
 {
-	t_env *env;
-
+	(void)cmd;
 	print_env(get_minish()->env);
 	return (EXIT_SUCCESS);
 }

@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_env.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 16:47:10 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/24 16:52:32 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-static char **cut_in_two(char *s)
+static char
+	**cut_in_two(char *s)
 {
 	int idx;
 	int i;
@@ -24,11 +37,12 @@ static char **cut_in_two(char *s)
 	return (res);
 }
 
-void	init_env_list(char **env)
+void
+	init_env_list(char **env)
 {
-	char **cut;
-	int i;
-	t_minish *minish;
+	char		**cut;
+	int			i;
+	t_minish	*minish;
 
 	minish = get_minish();
 	minish->env = 0;

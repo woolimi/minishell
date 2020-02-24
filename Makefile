@@ -6,7 +6,7 @@
 #    By: wpark <wpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/02/24 09:27:36 by wpark            ###   ########.fr        #
+#    Updated: 2020/02/24 16:41:51 by wpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,8 @@ SRC_NAME = main.c \
 		pipe.c \
 		quit.c \
 		redirection.c \
-		free_1.c
+		free_1.c \
+		free_2.c
 
 SRC_PATH = ./srcs
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))

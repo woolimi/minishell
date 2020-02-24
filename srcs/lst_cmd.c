@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   lst_cmd.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 16:53:05 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/24 17:17:49 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-t_cmd *lst_new_cmd(char *token)
+t_cmd
+	*lst_new_cmd(char *token)
 {
-	t_cmd *new;
+	t_cmd	*new;
 
 	new = malloc(sizeof(t_cmd));
 	new->argv = malloc(sizeof(char*) * 2);
@@ -21,9 +34,10 @@ t_cmd *lst_new_cmd(char *token)
 	return (new);
 }
 
-t_cmd *lst_add_cmd(t_cmd *begin, char *token)
+t_cmd
+	*lst_add_cmd(t_cmd *begin, char *token)
 {
-	t_cmd *tmp;
+	t_cmd	*tmp;
 
 	if (!begin)
 		return (lst_new_cmd(token));
@@ -37,9 +51,10 @@ t_cmd *lst_add_cmd(t_cmd *begin, char *token)
 	return (begin);
 }
 
-t_cmd *lst_last_cmd(t_cmd *cmd)
+t_cmd
+	*lst_last_cmd(t_cmd *cmd)
 {
-	t_cmd *last;
+	t_cmd	*last;
 
 	last = cmd;
 	while (last->next)

@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:21:55 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 09:46:35 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/24 16:06:49 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int
 }
 
 int
-	no_exec_error(char *cmd, int ret)
+	no_command_error(char *cmd, int ret)
 {
 	ft_putstr_fd("minishell: command not found: ", 2);
 	ft_putstr_fd(cmd, 2);

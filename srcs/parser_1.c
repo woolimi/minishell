@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   parser_1.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 17:18:53 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/24 17:28:35 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int is_redir(char *s)
+int
+	is_redir(char *s)
 {
 	if (ft_strequ(s, "<"))
 		return (1);
@@ -11,7 +24,8 @@ int is_redir(char *s)
 	return (0);
 }
 
-static int check_redir(char **tokens)
+static int
+	check_redir(char **tokens)
 {
 	int i;
 	int fredi;
@@ -39,7 +53,8 @@ static int check_redir(char **tokens)
 	return (1);
 }
 
-static int check_pipe(char **tokens)
+static int
+	check_pipe(char **tokens)
 {
 	int fpip;
 	int i;
@@ -69,7 +84,8 @@ static int check_pipe(char **tokens)
 	return (1);
 }
 
-static int check_semi(char **tokens)
+static int
+	check_semi(char **tokens)
 {
 	int i;
 	int fsemi;
@@ -91,7 +107,8 @@ static int check_semi(char **tokens)
 	return (1);
 }
 
-int ck_tokens(char **tokens)
+int
+	ck_tokens(char **tokens)
 {
 	if (check_redir(tokens)
 		&& check_pipe(tokens) 

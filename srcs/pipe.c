@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 10:19:16 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 13:56:41 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/24 17:19:03 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,25 +38,10 @@ static int
 	while (i < nb)
 	{
 		if (pipe(pipes + (i * 2)) == -1)
-		{
-			
-		}; /* error pipe in errono */
+			fatal_error_exit();
 		i++;
 	}
 	return (1);
-}
-
-void get_exit_code(int status, int excode)
-{
-	if (excode == -1)
-	{
-		if (WIFEXITED(status))
-			get_minish()->excode = WEXITSTATUS(status);
-		else if (WIFSIGNALED(status))
-			get_minish()->excode = 128 + WTERMSIG(status);
-	}
-	else
-		get_minish()->excode = excode;	
 }
 
 static void
@@ -88,7 +73,8 @@ static void
 	}
 }
 
-t_cmd *piping(t_cmd *cmd)
+t_cmd
+	*piping(t_cmd *cmd)
 {
 	int pipes[count_pipes(cmd) * 2];
 	int nb;
@@ -97,7 +83,8 @@ t_cmd *piping(t_cmd *cmd)
 	int cpid;
 	
 	nb = count_pipes(cmd);
-	create_pipes(pipes, nb);
+	if (!create_pipes(pipes, nb))
+		return (0);
 	i = 0;
 	while (i < (nb + 1))
 	{
