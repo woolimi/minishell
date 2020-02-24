@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/24 17:26:34 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/24 17:49:37 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	signal_handler(int signo)
 	{
 		if (get_minish()->executed == 1)
 		{
-			ft_putstr("\n");
+			ft_putstr("Quit (core dumped)\n");
 			get_minish()->executed = 0;
 		}
 	}
