@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:19:16 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 17:19:34 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/24 19:14:29 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,11 +42,13 @@ static int
 	return (1);
 }
 
-void
+int
 	redirection(t_cmd *cmd)
 {
-	if (cmd->in && (check_file_exist(cmd, cmd->in->file)))
+	if (cmd->in)
 	{
+		if (!(check_file_exist(cmd, cmd->in->file)))
+			return (0);
 		cmd->in->save_fd = dup(0); 
 		dup2(cmd->in->fd, 0);
 		close(cmd->in->fd);
@@ -63,6 +65,7 @@ void
 		dup2(cmd->out_dbl->fd, 1);
 		close(cmd->out_dbl->fd);
 	}
+	return (1);
 }
 
 void

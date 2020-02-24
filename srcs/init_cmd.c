@@ -6,27 +6,11 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:47:07 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 16:47:07 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/24 19:38:50 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-/*
-** tokens = { "cat", "Makefile", ">", "file.txt", "|", ...}
-** 
-** typedef struct	s_cmd
-** {
-** 	char	**argv; // { "cat", "Makefile" , NULL}
-** 	int		is_pipe;	// 1
-** 	int		is_rdir;	// 1
-** 	t_rdir	*in;
-** 	t_rdir	*out;	// file = file.txt, fd = open()
-** 	t_rdir	*out_dbl;
-** 	struct s_cmd *next;
-** }				t_cmd;
-** 
-*/
 
 static void
 	lst_add_ispipe_cmd(t_cmd *cmd)

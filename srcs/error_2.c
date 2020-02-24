@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:27:13 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 09:50:06 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/24 19:36:31 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int
 	ft_putstr_fd(": ", 2);
 	ft_putstr_fd(file, 2);
 	ft_putstr_fd(": numeric argument required\n", 2);
+	free_all();
 	return (ret);
 }
 
