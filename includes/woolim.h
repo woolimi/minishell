@@ -66,7 +66,7 @@ t_cmd *lst_last_cmd(t_cmd *cmd);
 int syntax_error(char *token, int ret);
 void	exec_command(void);
 char **get_built_in(void);
-int no_exec_error(char *cmd, int ret);
+int no_command_error(char *cmd, int ret);
 void exec_non_built_in(t_cmd *cmd);
 int no_file_error(char *cmd, char *file, int ret);
 void redirection(t_cmd *cmd);
@@ -75,11 +75,11 @@ t_cmd *piping(t_cmd *cmd);
 int too_many_arg_error(char *cmd, int ret);
 int	file_too_long(char *cmd, char *file, int ret);
 char *lst_find_env(char *key);
-void get_exit_code(int status, int excode);
 int count_arg(char **argv);
 int numeric_arg_error(char *cmd, char *file, int ret);
 
 void fatal_error_exit(void);
 void eof_exit(void);
+void get_exit_code(int status, int excode);
 
 #endif

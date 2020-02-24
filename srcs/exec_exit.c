@@ -13,7 +13,6 @@ static int check_str_digit(char *s)
 
 int exec_exit(t_cmd *cmd)
 {
-	t_env *env;
 	int ret;
 	int cnt;
 	int fdigit;

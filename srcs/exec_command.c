@@ -1,8 +1,21 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_command.c                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 09:39:46 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/24 09:58:09 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int is_built_in(char *arg)
+int
+	is_built_in(char *arg)
 {
-	char **btin_arr;
+	char	**btin_arr;
 	int		i;
 
 	btin_arr = get_built_in();
@@ -16,7 +29,8 @@ int is_built_in(char *arg)
 	return (-1);
 }
 
-int exec_built_in(int btin_nb, t_cmd *cmd)
+int
+	exec_built_in(int btin_nb, t_cmd *cmd)
 {
 	int ret;
 
@@ -40,12 +54,32 @@ int exec_built_in(int btin_nb, t_cmd *cmd)
 	return (ret);
 }
 
-void	exec_command(void)
+static void
+	non_built_in_fork_and_wait(t_cmd *cmd)
 {
-	t_cmd* cmd;
+	int	child_pid;
+	int	status;
+	
+	if ((child_pid = fork()) == -1)
+		fatal_error_exit();
+	else if (child_pid == 0)
+	{
+		signal(SIGINT, SIG_DFL);
+		signal(SIGQUIT, SIG_DFL);
+		exec_non_built_in(cmd);
+	}
+	else if (child_pid > 0)
+	{
+		wait(&status);
+		get_exit_code(status, NO_EXCODE);
+	}
+}
+
+void
+	exec_command(void)
+{
+	t_cmd*	cmd;
 	int		btin_nb;
-	int 	child_pid;
-	int 	status;
 
 	cmd = get_minish()->cmd;
 	get_minish()->executed = 1;
@@ -56,27 +90,10 @@ void	exec_command(void)
 			cmd = piping(cmd);
 			continue ;
 		}
+		if ((btin_nb = is_built_in(cmd->argv[0])) != -1)
+			get_exit_code(NO_STATUS, exec_built_in(btin_nb, cmd));
 		else
-		{
-			if ((btin_nb = is_built_in(cmd->argv[0])) != -1)
-				get_exit_code(NO_STATUS, exec_built_in(btin_nb, cmd));
-			else
-			{
-				if ((child_pid = fork()) == -1)
-					fatal_error_exit();
-				else if (child_pid == 0)
-				{
-					signal(SIGINT, SIG_DFL);
-					signal(SIGQUIT, SIG_DFL);
-					exec_non_built_in(cmd);
-				}
-				else if (child_pid > 0)
-				{
-					wait(&status);
-					get_exit_code(status, NO_EXCODE);
-				}
-			}
-		}
+			non_built_in_fork_and_wait(cmd);
 		cmd = cmd->next;
 	}
 	get_minish()->executed = 0;

@@ -6,14 +6,15 @@
 #    By: wpark <wpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/02/23 01:59:21 by wpark            ###   ########.fr        #
+#    Updated: 2020/02/24 16:41:51 by wpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
 FLAGS = -g3 -fsanitize=address
 SRC_NAME = main.c \
-		error.c \
+		error_1.c \
+		error_2.c \
 		exec_cd.c \
 		exec_command.c \
 		exec_echo.c \
@@ -35,7 +36,8 @@ SRC_NAME = main.c \
 		pipe.c \
 		quit.c \
 		redirection.c \
-		free_1.c
+		free_1.c \
+		free_2.c
 
 SRC_PATH = ./srcs
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))

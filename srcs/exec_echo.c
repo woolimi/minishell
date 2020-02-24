@@ -13,7 +13,6 @@ static void print_arg(char **argv, int i, int cnt)
 
 int	exec_echo(t_cmd *cmd)
 {
-	int i;
 	int cnt;
 
 	cnt = count_arg(cmd->argv);

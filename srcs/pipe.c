@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   pipe.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 10:19:16 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/24 17:19:03 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-static int count_pipes(t_cmd *begin)
+static int
+	count_pipes(t_cmd *begin)
 {
 	int i;
 
@@ -16,7 +29,8 @@ static int count_pipes(t_cmd *begin)
 	return (i);
 }
 
-static int	create_pipes(int pipes[], int nb)
+static int
+	create_pipes(int pipes[], int nb)
 {
 	int i;
 
@@ -24,86 +38,67 @@ static int	create_pipes(int pipes[], int nb)
 	while (i < nb)
 	{
 		if (pipe(pipes + (i * 2)) == -1)
-			return (0); /* error pipe in errono */
+			fatal_error_exit();
 		i++;
 	}
 	return (1);
 }
 
-static void close_pipes(int pipes[], int nb)
+static void
+	close_pipe_and_wait(int pipes[], int i, int nb)
 {
-	int i;
-
-	i = 0;
-	while (i < nb * 2)
-		close(pipes[i++]);
-}
-
-/*
-** need to wait one more child.
-** 1 pipe : 2 child
-** 2 pipe : 3 child 
-*/
-
-void get_exit_code(int status, int excode)
-{
-	if (excode == -1)
-	{
-		if (WIFEXITED(status))
-			get_minish()->excode = WEXITSTATUS(status);
-		else if (WIFSIGNALED(status))
-			get_minish()->excode = 128 + WTERMSIG(status);
-	}
-	else
-		get_minish()->excode = excode;	
-}
-
-static void	wait_status(int nb)
-{
-	int i;
 	int status;
 
-	i = 0;
-	while (i < nb + 1)
+	if (i < nb)
+		close(pipes[i * 2 + 1]);
+	if (i > 0)
+		close(pipes[(i - 1) * 2]);
+	wait(&status);
+}
+
+static void
+	dup2_and_close_pipe(int pipes[], int i, int nb)
+{
+	signal(SIGINT, SIG_DFL);
+	signal(SIGQUIT, SIG_DFL);
+	if (i < nb)
 	{
-		wait(&status);
-		get_exit_code(status, NO_EXCODE);
-		i++;
+		dup2(pipes[i * 2 + 1], 1);
+		close(pipes[i * 2 + 1]);
+	}
+	if (i > 0)
+	{
+		dup2(pipes[(i - 1) * 2], 0);
+		close(pipes[(i - 1) * 2]);
 	}
 }
 
-t_cmd *piping(t_cmd *cmd)
+t_cmd
+	*piping(t_cmd *cmd)
 {
 	int pipes[count_pipes(cmd) * 2];
 	int nb;
 	int i;
-	int cpid;
 	int btin_nb;
-	int status;
-
+	int cpid;
+	
 	nb = count_pipes(cmd);
-	create_pipes(pipes, nb);
+	if (!create_pipes(pipes, nb))
+		return (0);
 	i = 0;
 	while (i < (nb + 1))
 	{
 		if ((cpid = fork()) == 0)
 		{
-			signal(SIGINT, SIG_DFL);
-			signal(SIGQUIT, SIG_DFL);
-			if (i < nb)
-				dup2(pipes[i * 2 + 1], 1);
-			if (i > 0)
-				dup2(pipes[(i - 1) * 2], 0);
-			close_pipes(pipes, nb);
+			dup2_and_close_pipe(pipes, i, nb);
 			if ((btin_nb = is_built_in(cmd->argv[0])) != -1)
 				exit(exec_built_in(btin_nb, cmd));
 			exec_non_built_in(cmd);
-		} else if (cpid == -1)
+		}
+		else if (cpid == -1)
 			fatal_error_exit();
 		cmd = cmd->next;
-		i++;
+		close_pipe_and_wait(pipes, i++, nb);
 	}
-	close_pipes(pipes, nb);
-	wait_status(nb);
 	return (cmd);
 }

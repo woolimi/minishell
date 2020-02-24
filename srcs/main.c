@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/23 03:01:23 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/24 17:26:34 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,10 +36,11 @@ void	signal_handler(int signo)
 	}
 }
 
-static void read_line(void)
+static void
+	read_line(void)
 {
-	int ret;
-	t_minish *minish;
+	int			ret;
+	t_minish	*minish;
 	
 	minish = get_minish();
 	minish->line = 0;
@@ -53,13 +54,11 @@ static void read_line(void)
 		fatal_error_exit();
 }
 
-int	main(int ac, char **av, char **env)
+int
+	main(int ac, char **av, char **env)
 {
-	t_minish	*minish;
-
 	if (!ac || !av || !env)
 		return (0);
-	minish = get_minish();
 	init_env_list(env);
 	signal(SIGINT, signal_handler);
 	signal(SIGQUIT, signal_handler);
@@ -67,7 +66,7 @@ int	main(int ac, char **av, char **env)
 	{
 		prompt_msg();
 		read_line();			
-		if (!init_cmd_list(minish->tokens))
+		if (!init_cmd_list(get_minish()->tokens))
 		{
 			free_cmd();
 			continue ;
@@ -75,6 +74,5 @@ int	main(int ac, char **av, char **env)
 		exec_command();
 		free_cmd();
 	}
-	free_all();
 	return(0);
 }
