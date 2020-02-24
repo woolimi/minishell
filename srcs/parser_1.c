@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:18:53 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 17:28:35 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/24 19:34:31 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,7 @@ static int
 				return (syntax_error("|", 0));
 		}
 		else if (fpip == 1 &&
-			(is_redir(tokens[i])
-			|| ft_strequ(tokens[i], ";")))
+			(is_redir(tokens[i]) || ft_strequ(tokens[i], ";")))
 			return (syntax_error(tokens[i], 0));
 		else
 			fpip = 0;

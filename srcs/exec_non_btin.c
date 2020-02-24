@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_non_btin.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 19:53:52 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/24 19:53:53 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static char **create_path_arr(void)
@@ -57,7 +69,10 @@ void	exec_non_built_in(t_cmd *cmd)
 	char **path_arr;
 	
 	if (cmd->is_rdir)
-		redirection(cmd);
+	{
+		if (!redirection(cmd))
+			exit(1);
+	}
 	if (!cmd->has_path)
 	{
 		path_arr = create_path_arr();
@@ -67,7 +82,7 @@ void	exec_non_built_in(t_cmd *cmd)
 	}
 	else
 	{
-		execve(cmd->argv[0], cmd->argv, NULL);;//if work: program stop and leaks issue ??:
-		exit(no_file_error(cmd->argv[0], NULL, 127));
+		execve(cmd->argv[0], cmd->argv, NULL);//if work: program stop and leaks issue ??:
+		exit(no_file_error(cmd->argv[0], NULL, 1));
 	}
 }

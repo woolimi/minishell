@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:39:46 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 09:58:09 by wpark            ###   ########.fr       */
+/*   Updated: 2020/02/24 19:15:08 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,8 @@ int
 	int ret;
 
 	ret = -1;
-	redirection(cmd);
+	if (!redirection(cmd))
+		return (0);
 	if (btin_nb == 0)
 		ret = exec_echo(cmd);
 	else if (btin_nb == 1)

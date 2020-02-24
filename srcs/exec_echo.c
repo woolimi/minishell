@@ -1,6 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec_echo.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2020/02/24 18:53:45 by wpark             #+#    #+#             */
+/*   Updated: 2020/02/24 18:53:53 by wpark            ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-static void print_arg(char **argv, int i, int cnt)
+static void
+	print_arg(char **argv, int i, int cnt)
 {
 	while (argv[i])
 	{
@@ -11,7 +24,8 @@ static void print_arg(char **argv, int i, int cnt)
 	}
 }
 
-int	exec_echo(t_cmd *cmd)
+int
+	exec_echo(t_cmd *cmd)
 {
 	int cnt;
 
