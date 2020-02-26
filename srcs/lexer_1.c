@@ -66,27 +66,6 @@ static char	*spliter(char *line, int goal)
 	return (NULL);
 }
 
-static char	**check_tokens(char **tks)
-{
-	int		i;
-	int		j;
-
-	i = -1;
-	while (tks[++i])
-	{
-		j = -1;
-		while (tks[i][++j])
-		{
-			if (tks[i][j] == '\"' || tks[i][j] == '\'')
-			{
-				quotes_check(tks, i, j);
-				break ;
-			}
-		}
-	}
-	return (tks);
-}
-
 char		**lexing(char *line)
 {
 	char	**tokens;
@@ -100,14 +79,11 @@ char		**lexing(char *line)
 	while (++i < count)
 		tokens[i] = spliter(line, i + 1);
 	tokens[i] = NULL;
-	tokens = check_tokens(tokens);
 	return (tokens);
 }
-
 /*
-   int main()
-   {
-
+int main()
+{ 
    char **tk;
    int i = 0;
 //tk = lexing("file>tata");
@@ -123,7 +99,9 @@ char		**lexing(char *line)
 //tk = lexing("echo \"'couc'\"o\"'\"");
 //tk = lexing("e\"\"\"\"\"cho\" salut");
 //tk = lexing("ifconfig -a | grep ether | sed \"s/ether //g\" | sed \"s/  //g\" | sed \"s/ //g\"");
-tk = lexing("ifconfig -a | grep ether | sed \"s/ether //g\" | sed s/  //g\" | sed \"s/ //g\"");
+//tk = lexing("ifconfig -a | grep ether | sed \"s/ether //g\" | sed s/  //g\" | sed \"s/ //g\"");
+tk = lexing("echo lol\" mdr  coquinou \"\"  salut  paris  les looser  \"\' lose   lose  \'perdant endehor ");
+//tk = lexing("echo \"couco\"");
 while(tk[i])
 {
 printf("i=%d (%s)\n", i, tk[i]);
@@ -131,6 +109,4 @@ free(tk[i]);
 i++;
 }
 free(tk);
-while (1);
-}
- */
+}*/

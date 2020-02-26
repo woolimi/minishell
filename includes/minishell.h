@@ -142,6 +142,10 @@ char	**lexing(char *line);
 int		jump_space(char *line, int i, int jmp);
 int		check_sep(char *line, int i, int use);
 int		jmp_quotes(char *line, int i);
-void	quotes_check(char** tks, int i, int j);
+
+/*
+**	lexer_3.c
+*/
+char	*check_dollar(char *arg);
 
 #endif

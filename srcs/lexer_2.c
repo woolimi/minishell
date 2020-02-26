@@ -74,3 +74,30 @@ int		jmp_quotes(char *line, int i)
 	}
 	return (i);
 }
+
+char	*unquotes_token(char *tk)
+{
+	int		i;
+	int		j;
+	int		count;
+	char	*new_tk;
+	
+	i = -1;
+	j = -1;
+	count = 0;
+	while (tk[++i])
+	{
+		if (tk[i] == '\'' && ++count)
+			while (tk[++i] != '\'');
+		else if (tk[i] == '\"' && ++count)
+			while (tk[++i] != '\"');
+	}
+	if (!(new_tk = malloc(sizeof(char) * (ft_strlen(tk) - count * 2 + 1))))
+		return (NULL);
+	i = -1;
+	while (tk[++i])
+		if (tk[i] != '\'' && tk[i] != '\"')
+			new_tk[++j] = tk[i];
+	new_tk[++j] = '\0';
+	return (new_tk);
+}
