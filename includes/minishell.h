@@ -144,8 +144,8 @@ int		check_sep(char *line, int i, int use);
 int		jmp_quotes(char *line, int i);
 
 /*
-**	lexer_3.c
+**	dollar_quotes.c
 */
-char	*check_dollar(char *arg);
+char	**check_dollar(char **tks);
 
 #endif

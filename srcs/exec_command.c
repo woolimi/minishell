@@ -86,6 +86,7 @@ void
 	get_minish()->executed = 1;
 	while (cmd)
 	{
+		check_dollar(cmd->argv);
 		if (cmd->is_pipe)
 		{
 			cmd = piping(cmd);

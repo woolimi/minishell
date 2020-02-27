@@ -17,7 +17,7 @@ static int	get_key(char key[], char *arg)
 	int i;
 
 	i = 0;
-	while (arg[i] && arg[i] != ' ' && arg[i] != '$')
+	while (arg[i] && arg[i] != ' ' && arg[i] != '$' && arg[i] != '\"')
 	{
 		key[i] = arg[i];
 		i++;
@@ -57,15 +57,39 @@ static char	*change_env_to_value(char *arg)
 	return ft_strdup(buff);
 }
 
+static char	*create_unquotes(char *tk, char *new_tk)
+{
+	int	i;
+	int	j;
+
+	i = -1;
+	j = -1;
+	while (tk[++i])
+	{
+		if (tk[i] == '\'')
+		{
+			while (tk[++i] != '\'')
+				new_tk[++j] = tk[i];
+		}
+		else if (tk[i] == '\"')
+		{
+			while (tk[++i] != '\"')
+				new_tk[++j] = tk[i];
+		}
+		else
+			new_tk[++j] = tk[i];
+	}
+	new_tk[++j] = '\0';
+	return (new_tk);
+}
+
 static char	*unquotes_token(char *tk)
 {
 	int		i;
-	int		j;
 	int		count;
 	char	*new_tk;
 	
 	i = -1;
-	j = -1;
 	count = 0;
 	while (tk[++i])
 	{
@@ -76,30 +100,36 @@ static char	*unquotes_token(char *tk)
 	}
 	if (!(new_tk = malloc(sizeof(char) * (ft_strlen(tk) - count * 2 + 1))))
 		return (NULL);
-	i = -1;
-	while (tk[++i])
-		if (tk[i] != '\'' && tk[i] != '\"')
-			new_tk[++j] = tk[i];
-	new_tk[++j] = '\0';
-	return (new_tk);
+	return (create_unquotes(tk, new_tk));
 }
 
-char	*check_dollar(char *arg)
+char	**check_dollar(char **tks)
 {
 	char	*old_tk;
+	int		i;
 
-	//if (ft_strrchr(arg, '$'))
-	//{
-	//	old_tk = arg;
-		arg = change_env_to_value(arg);
-	//	free(old_tk);
-	//}
-	//if (ft_strrchr(arg, '\'') || ft_strrchr(arg, '\"'))
-	//{
-	//old_tk = arg;
-	//arg = unquotes_token(arg);
-	//free(old_tk);
-	return (arg);
+	i = 0;
+	while (tks[++i])
+	{
+		if (ft_strrchr(tks[i], '$'))
+		{
+				/*dell me that
+				old_tk = tks[i];
+				tks[i] = unquotes_token(tks[i]);
+				free(old_tk);*/
+
+			old_tk = tks[i];
+			tks[i] = change_env_to_value(tks[i]);
+			free(old_tk);
+		}
+		if (ft_strrchr(tks[i], '\'') || ft_strrchr(tks[i], '\"'))
+		{
+			old_tk = tks[i];
+			tks[i] = unquotes_token(tks[i]);
+			free(old_tk);
+		}
+	}
+	return (tks);
 }
 
 /*int main()
@@ -114,3 +144,5 @@ char	*check_dollar(char *arg)
 	printf("%s\n", check_dollar("mais nom cest pas possible"));
 	printf("%s\n", check_dollar("mais nom cest pas possible"));
 }*/
+
+

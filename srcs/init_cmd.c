@@ -76,7 +76,7 @@ static void
 		new_arr[i] = last->argv[i];
 		i++;
 	}
-	new_arr[i] = check_dollar(arg);//ft_strdup(arg);	
+	new_arr[i] = ft_strdup(arg);	
 	new_arr[cnt + 1] = NULL;
 	free(last->argv);
 	last->argv = new_arr;
