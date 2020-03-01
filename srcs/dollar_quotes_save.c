@@ -11,14 +11,13 @@
 /* ************************************************************************** */
 
 #include "../includes/minishell.h"//change me
-#define LINE_MAX 1024
 
-static int	get_key(char key[], char *arg)//add char set ' '
+static int	get_key(char key[], char *arg)
 {
 	int i;
 
 	i = 0;
-	while (arg[i] && arg[i] != ' ' && arg[i] != '$')
+	while (arg[i] && arg[i] != ' ' && arg[i] != '$' && arg[i] != '\"')
 	{
 		key[i] = arg[i];
 		i++;
@@ -27,80 +26,110 @@ static int	get_key(char key[], char *arg)//add char set ' '
 	return (i);
 }
 
-static int	change_env_to_value(char *arg, char *buff, int *i)
+static char	*change_env_to_value(char *arg)
 {
-	char	key[100];
-	char	*value;
-	int		ret;
+	char buff[1024];
+	char key[100];
+	char *value;
+	int i;
 
-	ret = 1;
-	if (*arg == '$' && *(arg + 1) == '?')
+	ft_memset(buff, 0, 1024);
+	i = 0;
+	while (*arg)
 	{
-		*i = ft_strlcat(buff, ft_itoa(get_minish()->excode), sizeof(buff));
-		ret = 2;
+		if (*arg == '$' && *(arg + 1) == '?')
+		{
+			i = ft_strlcat(buff, ft_itoa(get_minish()->excode), sizeof(buff));
+			arg += 2;
+		}
+		else if (*arg != '$' ||
+			(*arg == '$' && (!*(arg + 1) || *(arg + 1) == ' ')))
+			buff[i] = *arg++;
+		else
+		{
+			arg += get_key(key, ++arg);
+			value = lst_find_env(key);
+			i = ft_strlcat(buff, value, sizeof(buff));
+		}
+		i++;
 	}
-	else if (*arg == '$' && (!*(arg + 1) || *(arg + 1) == ' '))//espace sauf ""
-		buff[*i] = *arg;
-	else
-	{
-		ret = get_key(key, ++arg);
-		value = lst_find_env(key);
-		*i = ft_strlcat(buff, value, sizeof(buff));
-	}
-	return (ret - 1);
+	buff[i] = '\0';
+	return ft_strdup(buff);
 }
 
-static char	*check_quote(char *tk)
+static char	*create_unquotes(char *tk, char *new_tk)
 {
-	char buff[LINE_MAX];
 	int	i;
 	int	j;
 
 	i = -1;
 	j = -1;
-	ft_memset(buff, 0, LINE_MAX);
 	while (tk[++i])
 	{
 		if (tk[i] == '\'')
 		{
 			while (tk[++i] != '\'')
-				buff[++j] = tk[i];
+				new_tk[++j] = tk[i];
 		}
 		else if (tk[i] == '\"')
 		{
 			while (tk[++i] != '\"')
-			{
-				if (tk[i] == '$')
-					i += change_env_to_value(tk, buff, &j);
-				else
-					buff[++j] = tk[i];
-			}
+				new_tk[++j] = tk[i];
 		}
 		else
-		{
-			if (tk[i] == '$')
-				i += change_env_to_value(tk, buff, &j);
-			else
-				buff[++j] = tk[i];
-		}
+			new_tk[++j] = tk[i];
 	}
-	buff[++j] = '\0';
-	return (ft_strdup(buff));
+	new_tk[++j] = '\0';
+	return (new_tk);
 }
 
-char	**check_dollar(char **args)
+static char	*unquotes_token(char *tk)
 {
-	char	*old_arg;
+	int		i;
+	int		count;
+	char	*new_tk;
+	
+	i = -1;
+	count = 0;
+	while (tk[++i])
+	{
+		if (tk[i] == '\'' && ++count)
+			while (tk[++i] != '\'');
+		else if (tk[i] == '\"' && ++count)
+			while (tk[++i] != '\"');
+	}
+	if (!(new_tk = malloc(sizeof(char) * (ft_strlen(tk) - count * 2 + 1))))
+		return (NULL);
+	return (create_unquotes(tk, new_tk));
+}
+
+char	**check_dollar(char **tks)
+{
+	char	*old_tk;
 	int		i;
 
 	i = 0;
-	while (args[++i])
+	while (tks[++i])
 	{
-		old_arg = args[i];
-		args[i] = check_quote(args[i]);
-		free(old_arg);
+		if (ft_strrchr(tks[i], '$'))
+		{
+				/*dell me that
+				old_tk = tks[i];
+				tks[i] = unquotes_token(tks[i]);
+				free(old_tk);*/
+
+			old_tk = tks[i];
+			tks[i] = change_env_to_value(tks[i]);
+			free(old_tk);
+		}
+		if (ft_strrchr(tks[i], '\'') || ft_strrchr(tks[i], '\"'))
+		{
+			old_tk = tks[i];
+			tks[i] = unquotes_token(tks[i]);
+			free(old_tk);
+		}
 	}
-	return (args);
+	return (tks);
 }
 
 /*int main()
