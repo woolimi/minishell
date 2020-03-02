@@ -40,8 +40,11 @@ static void
 		if (cmd->argv[i][0] == '=' && !(copy = 0))
 			*ret = idententifier_error(cmd->argv[i]);
 		while (cmd->argv[i][end] != '=')
-			if (cmd->argv[i][end++] == ' ' && !(copy = 0))
+			if (ft_haschr( "\"\' ", cmd->argv[i][end++]) && !(copy = 0))
+			{
 				*ret = idententifier_error(cmd->argv[i]);
+				break ;
+			}
 		if (copy)
 		{
 			cmd->argv[i][end] = '\0';

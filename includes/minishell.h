@@ -17,6 +17,7 @@
 # define SEP "<>|;"
 # define SPACE " \t"
 # define PATH_MAX 1024
+# define LINE_MAX 1024
 # define NO_EXCODE -1
 # define NO_STATUS -1
 
@@ -99,7 +100,6 @@ t_cmd *lst_last_cmd(t_cmd *cmd);
 void init_env_list(char **env);
 void lst_remove_env(char *key);
 void lst_check_and_add_env(char *key, char *value);
-char *lst_find_env(char *key);
 t_env *lst_add_env(t_env *begin, char *key, char *value);
 t_env *lst_new_env(char *key, char *value);
 
@@ -109,6 +109,11 @@ t_env *lst_new_env(char *key, char *value);
 
 void exec_command(void);
 void exec_non_built_in(t_cmd *cmd);
+
+/*
+**	exec_cd
+*/
+char *lst_find_env(char *key);
 
 /*
 **	piping

@@ -18,7 +18,7 @@ char
 	t_env	*env;
 
 	env = get_minish()->env;
-	while (env->next)
+	while (env)
 	{
 		if (ft_strequ(env->key, key))
 			return (env->value);
