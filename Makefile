@@ -29,7 +29,6 @@ SRC_NAME = main.c \
 		init_env.c \
 		lexer_1.c \
 		lexer_2.c \
-		lexer_3.c \
 		lst_cmd.c \
 		lst_env.c \
 		parser_1.c \
@@ -37,7 +36,8 @@ SRC_NAME = main.c \
 		quit.c \
 		redirection.c \
 		free_1.c \
-		free_2.c
+		free_2.c \
+		dollar_quotes.c
 
 SRC_PATH = ./srcs
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))
