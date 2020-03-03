@@ -11,7 +11,8 @@
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = -g3 -fsanitize=address
+FLAGS =
+#-Wall -Werror -Wextra -g3 -fsanitize=address
 SRC_NAME = main.c \
 		error_1.c \
 		error_2.c \

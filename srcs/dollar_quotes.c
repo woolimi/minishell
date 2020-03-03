@@ -35,7 +35,7 @@ static int	change_env_to_value(char *arg, char *buff, int *j)
 
 	ret = 1;
 	if (*arg == '$' && *(arg + 1) == '?')
-	{	
+	{
 		tmp = ft_itoa(get_minish()->excode);
 		*j = ft_strlcat(buff, tmp, LINE_MAX) - 1;
 		free(tmp);
