@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:18:22 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:36:03 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/03 18:49:51 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,12 @@ void
 	lst_check_and_add_env(char *key, char *value)
 {
 	t_env	*env;
-
+	int ret;
+	
 	env = get_minish()->env;
 	while (env->next)
 	{
+		ret = ft_strequ(env->key, key);
 		if (ft_strequ(env->key, key))
 		{
 			if (env->value)
@@ -87,6 +89,13 @@ void
 			return ;
 		}
 		env = env->next;
+	}
+	if (ft_strequ(env->key, key))
+	{
+		if (env->value)
+			free(env->value);
+		env->value = ft_strdup(value);
+		return;
 	}
 	env->next = lst_new_env(key, value);
 }
