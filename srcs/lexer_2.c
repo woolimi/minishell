@@ -48,12 +48,21 @@ int		check_sep(char *line, int i, int use)
 	return (0);
 }
 
+static int	check_backslash(char *line, int i, char quote)
+{//jump backslash ou check back avatn back
+	if (!line[i])
+		return (0);
+	if (line[i] == quote && line[i - 1] != '\\')
+		return (0);
+	return (1);
+}
+
 int		jmp_quotes(char *line, int i)
 {
-	if (line[i] == '\"')
+	if (line[i] == '\"' && (i == 0 || line[i - 1] != '\\'))
 	{
 		i++;
-		while (line[i] != '\"' && line[i])
+		while (check_backslash(line, i, '\"'))
 			i++;
 		if (line[i] == '\0')
 		{
@@ -61,10 +70,10 @@ int		jmp_quotes(char *line, int i)
 			return(-1);
 		}
 	}
-	else if (line[i] == '\'')
+	else if (line[i] == '\'' && (i == 0 || line[i - 1] != '\\'))
 	{
 		i++;
-		while (line[i] != '\'' && line[i])
+		while (check_backslash(line, i, '\''))
 			i++;
 		if (line[i] == '\0')
 		{
@@ -75,7 +84,7 @@ int		jmp_quotes(char *line, int i)
 	return (i);
 }
 
-char	*unquotes_token(char *tk)
+/*char	*unquotes_token(char *tk)
 {
 	int		i;
 	int		j;
@@ -100,4 +109,4 @@ char	*unquotes_token(char *tk)
 			new_tk[++j] = tk[i];
 	new_tk[++j] = '\0';
 	return (new_tk);
-}
+}*/
