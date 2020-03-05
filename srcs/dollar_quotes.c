@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:34 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/05 14:22:07 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:21:41 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,17 +108,35 @@ static char	*check_quote(char *tk, int i)
 	return (ft_strdup(buff));
 }
 
-char		**check_dollar(char **args)
+void		check_dollar(t_cmd *cmd)
 {
 	char	*old_arg;
 	int		i;
 
 	i = 0;
-	while (args[++i])
+	while (cmd->argv[++i])
 	{
-		old_arg = args[i];
-		args[i] = check_quote(args[i], -1);
+		old_arg = cmd->argv[i];
+		cmd->argv[i] = check_quote(cmd->argv[i], -1);
 		free(old_arg);
 	}
-	return (args);
+	if (cmd->in && cmd->in->file)
+	{
+		old_arg = cmd->in->file;
+		cmd->in->file = check_quote(cmd->in->file, -1);
+		free(old_arg);
+	}
+	if (cmd->out && cmd->out->file)
+	{
+		old_arg = cmd->out->file;
+		cmd->out->file = check_quote(cmd->out->file, -1);
+		free(old_arg);
+		
+	}
+	if (cmd->out_dbl && cmd->out_dbl->file)
+	{
+		old_arg = cmd->out_dbl->file;
+		cmd->out_dbl->file = check_quote(cmd->out_dbl->file, -1);
+		free(old_arg);
+	}
 }

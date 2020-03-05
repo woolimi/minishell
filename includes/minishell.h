@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 18:11:12 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/05 13:34:15 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/05 15:38:38 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -152,6 +152,6 @@ int			jmp_quotes(char *line, int i);
 **	dollar_quotes.c
 */
 
-char		**check_dollar(char **tks);
+void		check_dollar(t_cmd *cmd);
 
 #endif
