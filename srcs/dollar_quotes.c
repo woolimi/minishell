@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   lexer_3.c                                          :+:      :+:    :+:   */
+/*   dollar_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:34 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/24 19:36:07 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 12:03:39 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"//change me
+#include "minishell.h"
 
 static int	get_key(char key[], char *arg)
 {
@@ -61,6 +61,8 @@ static int	check_backslash(char *tk, char *buff, int *j, int quotes)
 		ret = 1;
 		if (ft_haschr("$\'\"\\", tk[1]))
 			buff[++*j] = *(++tk);
+		else if (ft_haschr(WHITE_SPACE, tk[1]))
+			buff[++*j] = conv_white_space(tk[1]);
 		else
 		{
 			buff[++*j] = *tk;
@@ -79,9 +81,9 @@ static int	check_backslash(char *tk, char *buff, int *j, int quotes)
 
 static char	*check_quote(char *tk)
 {
-	char buff[LINE_MAX];
-	int	i;
-	int	j;
+	char	buff[LINE_MAX];
+	int		i;
+	int		j;
 
 	i = -1;
 	j = -1;
@@ -119,18 +121,3 @@ char	**check_dollar(char **args)
 	}
 	return (args);
 }
-
-/*int main()
-{
-	printf("%s\n", check_dollar("mais nom cest pas possible"));
-	printf("%s\n", check_dollar("mais nom cest pas possible"));
-	printf("%s\n", check_dollar("mais nom cest pas possible"));
-	printf("%s\n", check_dollar("mais nom cest pas possible"));
-	printf("%s\n", check_dollar("mais nom cest pas possible"));
-	printf("%s\n", check_dollar("mais nom cest pas possible"));
-	printf("%s\n", check_dollar("mais nom cest pas possible"));
-	printf("%s\n", check_dollar("mais nom cest pas possible"));
-	printf("%s\n", check_dollar("mais nom cest pas possible"));
-}*/
-
-

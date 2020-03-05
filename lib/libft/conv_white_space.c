@@ -1,32 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strdup.c                                        :+:      :+:    :+:   */
+/*   conv_white_space.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/10/11 10:34:03 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/05 11:43:47 by froussel         ###   ########.fr       */
+/*   Created: 2020/03/05 10:31:46 by froussel          #+#    #+#             */
+/*   Updated: 2020/03/05 10:32:10 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strdup(const char *s1)
+char	conv_white_space(char c)
 {
-	size_t	i;
-	char	*ret;
-
-	if (!s1)
-		return (0);
-	if (!(ret = (char*)malloc(sizeof(char) * (ft_strlen(s1) + 1))))
-		return (0);
-	i = 0;
-	while (s1[i])
-	{
-		ret[i] = s1[i];
-		i++;
-	}
-	ret[i] = '\0';
-	return (ret);
+	if (c == ' ')
+		return (' ');
+	else if (c == 't')
+		return ('\t');
+	else if (c == 'n')
+		return ('\n');
+	else if (c == 'r')
+		return ('\r');
+	else if (c == 'v')
+		return ('\v');
+	return (c);
 }

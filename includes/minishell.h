@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 18:11:12 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/24 19:57:48 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 10:43:49 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
 
+# define WHITE_SPACE " tnvfr"
 # define SEP_SPACE " \t<>|;"
 # define SEP "<>|;"
 # define SPACE " \t"
@@ -31,8 +32,6 @@
 # include <string.h>
 # include <errno.h>
 # include "struct.h"
-//# include <term.h>
-//# include <curses.h>
 //DEBUG
 # include <stdio.h>
 

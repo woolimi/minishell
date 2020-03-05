@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 01:47:57 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/15 01:48:13 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 11:41:58 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char *ft_strnew(void)
+static char		*ft_strnew(void)
 {
 	char *ret;
 
@@ -22,7 +22,7 @@ static char *ft_strnew(void)
 	return (ret);
 }
 
-static ssize_t pos_nl(char *s)
+static ssize_t	pos_nl(char *s)
 {
 	ssize_t i;
 
@@ -36,7 +36,7 @@ static ssize_t pos_nl(char *s)
 	return (-1);
 }
 
-static int free_cache(char **cache, int ret)
+static int		free_cache(char **cache, int ret)
 {
 	if (*cache)
 	{
@@ -46,7 +46,7 @@ static int free_cache(char **cache, int ret)
 	return (ret);
 }
 
-static int extract(char **line, char **cache, int idx)
+static int		extract(char **line, char **cache, int idx)
 {
 	char *tmp;
 
@@ -68,12 +68,12 @@ static int extract(char **line, char **cache, int idx)
 	return (1);
 }
 
-int get_next_line(int fd, char **line)
+int				get_next_line(int fd, char **line)
 {
-	ssize_t r_size;
-	char buff[BS + 1];
-	static char *cache;
-	char *tmp;
+	ssize_t		r_size;
+	char		buff[BS + 1];
+	static char	*cache;
+	char		*tmp;
 
 	if (fd < 0 || !line)
 		return (free_cache(&cache, -1));
@@ -85,7 +85,7 @@ int get_next_line(int fd, char **line)
 		free_cache(&cache, 0);
 		cache = tmp;
 		if (pos_nl(cache) != -1)
-			break;
+			break ;
 	}
 	if (r_size < 0)
 		return (free_cache(&cache, -1));
