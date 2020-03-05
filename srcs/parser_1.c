@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:18:53 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:34:31 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/03 17:58:46 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ static int
 	int i;
 	int fsemi;
 
-	fsemi = 0;
 	i = 0;
+	fsemi = 0;
 	while (tokens[i])
 	{
 		if (ft_strequ(tokens[i], ";"))
@@ -101,6 +101,8 @@ static int
 			if (fsemi == 2)
 				return (syntax_error(";", 0));
 		}
+		else
+			fsemi = 0;
 		i++;
 	}
 	return (1);
