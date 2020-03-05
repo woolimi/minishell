@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:39:46 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/05 13:40:10 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/05 16:32:56 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ int
 	int ret;
 
 	ret = -1;
+	check_dollar(cmd);
 	if (!redirection(cmd))
 		return (0);
 	if (btin_nb == 0)
@@ -86,7 +87,6 @@ void
 	get_minish()->executed = 1;
 	while (cmd)
 	{
-		check_dollar(cmd->argv);
 		if (cmd->is_pipe)
 		{
 			cmd = piping(cmd);
