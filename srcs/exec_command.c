@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:39:46 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:15:08 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 13:40:10 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +60,7 @@ static void
 {
 	int	child_pid;
 	int	status;
-	
+
 	if ((child_pid = fork()) == -1)
 		fatal_error_exit();
 	else if (child_pid == 0)
@@ -79,7 +79,7 @@ static void
 void
 	exec_command(void)
 {
-	t_cmd*	cmd;
+	t_cmd	*cmd;
 	int		btin_nb;
 
 	cmd = get_minish()->cmd;

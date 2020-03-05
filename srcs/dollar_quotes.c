@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:34 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/05 12:03:39 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/05 13:36:37 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,13 +79,11 @@ static int	check_backslash(char *tk, char *buff, int *j, int quotes)
 	return (ret);
 }
 
-static char	*check_quote(char *tk)
+static char	*check_quote(char *tk, int i)
 {
 	char	buff[LINE_MAX];
-	int		i;
 	int		j;
 
-	i = -1;
 	j = -1;
 	ft_memset(buff, 0, LINE_MAX);
 	while (tk[++i])
@@ -99,15 +97,17 @@ static char	*check_quote(char *tk)
 				else
 					i += check_backslash(&tk[i], buff, &j, 1);
 		else
+		{
 			if (tk[i] == '$')
 				i += change_env_to_value(&tk[i], buff, &j);
 			else
 				i += check_backslash(&tk[i], buff, &j, 0);
+		}
 	buff[++j] = '\0';
 	return (ft_strdup(buff));
 }
 
-char	**check_dollar(char **args)
+char		**check_dollar(char **args)
 {
 	char	*old_arg;
 	int		i;
@@ -116,7 +116,7 @@ char	**check_dollar(char **args)
 	while (args[++i])
 	{
 		old_arg = args[i];
-		args[i] = check_quote(args[i]);
+		args[i] = check_quote(args[i], -1);
 		free(old_arg);
 	}
 	return (args);

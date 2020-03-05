@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:53:05 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:36:05 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 13:51:02 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ t_cmd
 	if (ft_strchr(new->argv[0], '/'))
 		new->has_path = 1;
 	else
-		new->has_path = 0;	
+		new->has_path = 0;
 	new->in = NULL;
 	new->out = NULL;
 	new->out_dbl = NULL;

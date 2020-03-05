@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:18:22 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/03 18:49:51 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 13:46:42 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void
 			free(now->key);
 			free(now->value);
 			free(now);
-			break;
+			break ;
 		}
 		bef = now;
 		now = nxt;
@@ -75,8 +75,8 @@ void
 	lst_check_and_add_env(char *key, char *value)
 {
 	t_env	*env;
-	int ret;
-	
+	int		ret;
+
 	env = get_minish()->env;
 	while (env->next)
 	{
@@ -95,7 +95,7 @@ void
 		if (env->value)
 			free(env->value);
 		env->value = ft_strdup(value);
-		return;
+		return ;
 	}
 	env->next = lst_new_env(key, value);
 }
