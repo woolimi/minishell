@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:34 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/05 13:36:37 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/05 14:22:07 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,10 @@ static int	change_env_to_value(char *arg, char *buff, int *j)
 	char	*tmp;
 	int		ret;
 
-	ret = 1;
+	ret = 0;
 	if (*arg == '$' && *(arg + 1) == '?')
 	{
+		ret = 1;
 		tmp = ft_itoa(get_minish()->excode);
 		*j = ft_strlcat(buff, tmp, LINE_MAX) - 1;
 		free(tmp);

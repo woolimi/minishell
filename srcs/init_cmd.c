@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:47:07 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:38:50 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 15:02:32 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,7 +76,7 @@ static void
 		new_arr[i] = last->argv[i];
 		i++;
 	}
-	new_arr[i] = ft_strdup(arg);	
+	new_arr[i] = ft_strdup(arg);
 	new_arr[cnt + 1] = NULL;
 	free(last->argv);
 	last->argv = new_arr;

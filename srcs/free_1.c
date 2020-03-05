@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   free_1.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:36:09 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:38:38 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 14:18:15 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,8 +25,8 @@ static void
 static void
 	free_tokens(void)
 {
-	char **tokens;
-	int i;
+	char	**tokens;
+	int		i;
 
 	tokens = get_minish()->tokens;
 	if (tokens)
@@ -78,4 +78,3 @@ void
 	}
 	get_minish()->cmd = 0;
 }
-

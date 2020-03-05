@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:47:10 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:39:13 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 15:02:52 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static char
 	**cut_in_two(char *s)
 {
-	int idx;
-	int i;
-	int j;
-	char **res;
+	int		idx;
+	int		i;
+	int		j;
+	char	**res;
 
 	idx = 0;
 	while (s && s[idx] != '=')
