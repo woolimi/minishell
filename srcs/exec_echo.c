@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_echo.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 18:53:45 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 18:53:53 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 13:41:18 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int
 	else
 	{
 		print_arg(cmd->argv, 1, cnt);
-		ft_putstr("\n");		
+		ft_putstr("\n");
 	}
 	return (EXIT_SUCCESS);
 }

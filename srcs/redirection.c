@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   redirection.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:19:16 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:14:29 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 13:37:35 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,13 @@ static int
 	int fd;
 
 	if (is_double)
-		fd = open(file, O_WRONLY | O_APPEND | O_CREAT, S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
+		fd = open(file, O_WRONLY | O_APPEND | O_CREAT, S_IRUSR
+			| S_IRGRP | S_IWGRP | S_IWUSR);
 	else
-		fd = open(file, O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR | S_IRGRP | S_IWGRP | S_IWUSR);
+		fd = open(file, O_WRONLY | O_TRUNC | O_CREAT, S_IRUSR
+			| S_IRGRP | S_IWGRP | S_IWUSR);
 	if (fd < 0)
-		return (0); // file create error
+		return (0);
 	if (is_double)
 		cmd->out_dbl->fd = fd;
 	else
@@ -49,7 +51,7 @@ int
 	{
 		if (!(check_file_exist(cmd, cmd->in->file)))
 			return (0);
-		cmd->in->save_fd = dup(0); 
+		cmd->in->save_fd = dup(0);
 		dup2(cmd->in->fd, 0);
 		close(cmd->in->fd);
 	}

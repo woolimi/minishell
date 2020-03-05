@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:44:45 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:44:45 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 13:34:42 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,6 @@ typedef struct		s_minish
 	t_cmd			*cmd;
 	int				executed;
 	int				excode;
-} t_minish;
+}					t_minish;
 
 #endif

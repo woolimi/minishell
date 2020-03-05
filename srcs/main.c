@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/05 13:12:55 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 13:44:20 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ void
 			get_minish()->executed = 0;
 		else
 			prompt_msg();
-	} else if (signo == SIGQUIT)
+	}
+	else if (signo == SIGQUIT)
 	{
 		if (get_minish()->executed == 1)
 		{
@@ -44,7 +45,7 @@ static int
 {
 	int			ret;
 	t_minish	*minish;
-	
+
 	minish = get_minish();
 	minish->line = 0;
 	ret = get_next_line(0, &(minish->line));
@@ -72,7 +73,7 @@ int
 	{
 		prompt_msg();
 		if (!read_line())
-			continue ;	
+			continue ;
 		if (!init_cmd_list(get_minish()->tokens))
 		{
 			free_cmd();
@@ -81,5 +82,5 @@ int
 		exec_command();
 		free_cmd();
 	}
-	return(0);
+	return (0);
 }

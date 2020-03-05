@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_exit.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 18:53:24 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 18:59:36 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 13:42:39 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,9 +27,9 @@ static int
 int
 	exec_exit(t_cmd *cmd)
 {
-	int cnt;
-	int fdigit;
-	char ret;
+	int		cnt;
+	int		fdigit;
+	char	ret;
 
 	cnt = count_arg(cmd->argv);
 	fdigit = check_str_digit(cmd->argv[1]);

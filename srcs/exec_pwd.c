@@ -3,19 +3,19 @@
 /*                                                        :::      ::::::::   */
 /*   exec_pwd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:37:18 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:38:06 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 13:59:20 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int exec_pwd(t_cmd *cmd)
+int	exec_pwd(t_cmd *cmd)
 {
 	char cwd[PATH_MAX];
-	
+
 	(void)cmd;
 	if (!(getcwd(cwd, sizeof(cwd))))
 	{

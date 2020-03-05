@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 10:19:16 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:39:21 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 13:40:11 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ t_cmd
 	int i;
 	int btin_nb;
 	int cpid;
-	
+
 	nb = count_pipes(cmd);
 	if (!create_pipes(pipes, nb))
 		return (0);

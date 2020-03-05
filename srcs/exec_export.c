@@ -3,18 +3,18 @@
 /*                                                        :::      ::::::::   */
 /*   exec_export.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:37:02 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:37:03 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 13:43:29 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 /*
- ** args : { "export", "KEY1=value1", "KEY2=value2" } 
- */
+** args : { "export", "KEY1=value1", "KEY2=value2" }
+*/
 
 static int
 	idententifier_error(char *ident)
@@ -40,7 +40,7 @@ static void
 		if (cmd->argv[i][0] == '=' && !(copy = 0))
 			*ret = idententifier_error(cmd->argv[i]);
 		while (cmd->argv[i][end] != '=')
-			if (ft_haschr( "\"\' ", cmd->argv[i][end++]) && !(copy = 0))
+			if (ft_haschr("\"\' ", cmd->argv[i][end++]) && !(copy = 0))
 			{
 				*ret = idententifier_error(cmd->argv[i]);
 				break ;

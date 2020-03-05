@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   quit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 15:59:38 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:39:28 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 13:37:59 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,5 +41,5 @@ void
 			get_minish()->excode = 128 + WTERMSIG(status);
 	}
 	else
-		get_minish()->excode = excode;	
+		get_minish()->excode = excode;
 }

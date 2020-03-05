@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parser_1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:18:53 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/03 17:58:46 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 13:41:10 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,7 +112,7 @@ int
 	ck_tokens(char **tokens)
 {
 	if (check_redir(tokens)
-		&& check_pipe(tokens) 
+		&& check_pipe(tokens)
 		&& check_semi(tokens))
 		return (1);
 	return (0);
