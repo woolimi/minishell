@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_haschr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 19:40:35 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/12 19:41:44 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 10:34:35 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int ft_haschr(const char *s, char c)
+int	ft_haschr(const char *s, char c)
 {
 	int i;
 

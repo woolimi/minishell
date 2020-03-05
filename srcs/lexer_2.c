@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:34 by froussel          #+#    #+#             */
-/*   Updated: 2020/02/16 22:18:02 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 10:42:28 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/minishell.h"//change me
+#include "minishell.h"
 
 int		jump_space(char *line, int i, int jmp)
 {
@@ -48,12 +48,23 @@ int		check_sep(char *line, int i, int use)
 	return (0);
 }
 
+static int	check_backslash(char *line, int *i, char quote)
+{
+	if (!line[*i])
+		return (0);
+	if (line[*i] == '\\')
+		++*i;
+	else if (line[*i] == quote)
+		return (0);
+	return (1);
+}
+
 int		jmp_quotes(char *line, int i)
 {
-	if (line[i] == '\"')
+	if (line[i] == '\"' && (i == 0 || line[i - 1] != '\\'))
 	{
 		i++;
-		while (line[i] != '\"' && line[i])
+		while (check_backslash(line, &i, '\"'))
 			i++;
 		if (line[i] == '\0')
 		{
@@ -61,10 +72,10 @@ int		jmp_quotes(char *line, int i)
 			return(-1);
 		}
 	}
-	else if (line[i] == '\'')
+	else if (line[i] == '\'' && (i == 0 || line[i - 1] != '\\'))
 	{
 		i++;
-		while (line[i] != '\'' && line[i])
+		while (check_backslash(line, &i, '\''))
 			i++;
 		if (line[i] == '\0')
 		{
@@ -73,31 +84,4 @@ int		jmp_quotes(char *line, int i)
 		}
 	}
 	return (i);
-}
-
-char	*unquotes_token(char *tk)
-{
-	int		i;
-	int		j;
-	int		count;
-	char	*new_tk;
-	
-	i = -1;
-	j = -1;
-	count = 0;
-	while (tk[++i])
-	{
-		if (tk[i] == '\'' && ++count)
-			while (tk[++i] != '\'');
-		else if (tk[i] == '\"' && ++count)
-			while (tk[++i] != '\"');
-	}
-	if (!(new_tk = malloc(sizeof(char) * (ft_strlen(tk) - count * 2 + 1))))
-		return (NULL);
-	i = -1;
-	while (tk[++i])
-		if (tk[i] != '\'' && tk[i] != '\"')
-			new_tk[++j] = tk[i];
-	new_tk[++j] = '\0';
-	return (new_tk);
 }

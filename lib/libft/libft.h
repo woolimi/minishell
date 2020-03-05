@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 10:46:12 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/15 01:51:15 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/05 11:44:04 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ int					ft_toupper(int c);
 int					ft_tolower(int c);
 char				*ft_strdup(const char *s1);
 void				*ft_calloc(size_t count, size_t size);
-int 				ft_strequ(const char *s1, const char *s2);
-char 				*ft_strsub(char const *s, unsigned int start, size_t len);
+int					ft_strequ(const char *s1, const char *s2);
+char				*ft_strsub(char const *s, unsigned int start, size_t len);
 char				*ft_strjoin(char const *s1, char const *s2);
 char				*ft_strtrim(char const *s1, char const *set);
 char				**ft_split(char const *s, char c);
@@ -52,17 +52,18 @@ void				ft_putchar_fd(char c, int fd);
 void				ft_putstr_fd(char *s, int fd);
 void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
+char				conv_white_space(char c);
 
+# define BS 256
 
-#define BS 256
 typedef struct		s_cache
 {
 	char			*content;
 	struct s_cache	*next;
 }					t_cache;
 
-int 				get_next_line(int fd, char **line);
-int 				ft_haschr(const char *s, char c);
+int					get_next_line(int fd, char **line);
+int					ft_haschr(const char *s, char c);
 int					lst_hasnl(t_cache *cache);
 t_cache				*lst_add(t_cache **cache, char *content);
 int					lst_length(t_cache *cache);

@@ -39,7 +39,8 @@ SRCS = ft_memset.c \
 		ft_haschr.c \
 		get_next_line.c \
 		ft_putstr.c \
-		ft_strequ.c
+		ft_strequ.c \
+		conv_white_space.c
 
 OBJS = $(SRCS:%.c=%.o)
 
