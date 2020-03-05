@@ -3,24 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 01:47:57 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/05 11:41:58 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/05 13:11:51 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-
-static char		*ft_strnew(void)
-{
-	char *ret;
-
-	if (!(ret = (char *)malloc(sizeof(char))))
-		return (0);
-	ret[0] = '\0';
-	return (ret);
-}
 
 static ssize_t	pos_nl(char *s)
 {
@@ -89,7 +79,7 @@ int				get_next_line(int fd, char **line)
 	}
 	if (r_size < 0)
 		return (free_cache(&cache, -1));
-	if (r_size == 0 && (!cache || *cache == '\0') && (*line = ft_strnew()))
-		return (free_cache(&cache, 0));
+	if (r_size == 0 && (*line = ft_strdup(cache)))
+		return (0);
 	return (extract(line, &cache, pos_nl(cache)));
 }

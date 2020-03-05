@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 10:46:12 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/05 11:44:04 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/05 12:50:46 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 char				conv_white_space(char c);
 
-# define BS 256
+# define BS 1
 
 typedef struct		s_cache
 {
