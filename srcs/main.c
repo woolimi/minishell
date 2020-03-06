@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/05 13:44:20 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:27:51 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ static int
 	minish->line = 0;
 	ret = get_next_line(0, &(minish->line));
 	if (ret == -1)
-		fatal_error_exit();
+		eof_exit();
 	if (ret == 0 && ft_strlen(minish->line))
 		return (0);
 	if (ret == 0 && !ft_strlen(minish->line))

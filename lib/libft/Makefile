@@ -1,5 +1,5 @@
 NAME = libft.a
-CFLAGS = -Wall -Wextra -Werror -I. -c
+CFLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address -I. -c
 
 SRCS = ft_memset.c \
 		ft_bzero.c \
