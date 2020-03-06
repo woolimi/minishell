@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   struct.h                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:44:45 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/05 13:34:42 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:00:02 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ typedef struct		s_rdir
 {
 	char			*file;
 	int				fd;
-	int				save_fd;
+	int				is_dbl;
+	int				std;
+	struct s_rdir	*next;
 }					t_rdir;
 
 typedef struct		s_cmd
@@ -35,7 +37,6 @@ typedef struct		s_cmd
 	int				has_path;
 	t_rdir			*in;
 	t_rdir			*out;
-	t_rdir			*out_dbl;
 	struct s_cmd	*next;
 }					t_cmd;
 

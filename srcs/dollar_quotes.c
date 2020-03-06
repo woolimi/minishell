@@ -3,16 +3,17 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:34 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/05 16:21:41 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:17:24 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	get_key(char key[], char *arg)
+static int
+	get_key(char key[], char *arg)
 {
 	int i;
 
@@ -26,7 +27,8 @@ static int	get_key(char key[], char *arg)
 	return (i);
 }
 
-static int	change_env_to_value(char *arg, char *buff, int *j)
+static int
+	change_env_to_value(char *arg, char *buff, int *j)
 {
 	char	key[100];
 	char	*value;
@@ -52,7 +54,8 @@ static int	change_env_to_value(char *arg, char *buff, int *j)
 	return (ret);
 }
 
-static int	check_backslash(char *tk, char *buff, int *j, int quotes)
+static int
+	check_backslash(char *tk, char *buff, int *j, int quotes)
 {
 	int ret;
 
@@ -80,7 +83,8 @@ static int	check_backslash(char *tk, char *buff, int *j, int quotes)
 	return (ret);
 }
 
-static char	*check_quote(char *tk, int i)
+char
+	*check_quote(char *tk, int i)
 {
 	char	buff[LINE_MAX];
 	int		j;
@@ -108,7 +112,8 @@ static char	*check_quote(char *tk, int i)
 	return (ft_strdup(buff));
 }
 
-void		check_dollar(t_cmd *cmd)
+int
+	check_dollar(t_cmd *cmd)
 {
 	char	*old_arg;
 	int		i;
@@ -120,23 +125,9 @@ void		check_dollar(t_cmd *cmd)
 		cmd->argv[i] = check_quote(cmd->argv[i], -1);
 		free(old_arg);
 	}
-	if (cmd->in && cmd->in->file)
-	{
-		old_arg = cmd->in->file;
-		cmd->in->file = check_quote(cmd->in->file, -1);
-		free(old_arg);
-	}
-	if (cmd->out && cmd->out->file)
-	{
-		old_arg = cmd->out->file;
-		cmd->out->file = check_quote(cmd->out->file, -1);
-		free(old_arg);
-		
-	}
-	if (cmd->out_dbl && cmd->out_dbl->file)
-	{
-		old_arg = cmd->out_dbl->file;
-		cmd->out_dbl->file = check_quote(cmd->out_dbl->file, -1);
-		free(old_arg);
-	}
+	if (!check_inrdir_dollar(cmd->in))
+		return (0);
+	if (!check_outrdir_dollar(cmd->out))
+		return (0);
+	return (1);
 }

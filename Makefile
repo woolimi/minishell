@@ -6,13 +6,15 @@
 #    By: wpark <wpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/03/03 17:46:58 by wpark            ###   ########.fr        #
+#    Updated: 2020/03/06 14:17:02 by wpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = -g3 -fsanitize=address
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 SRC_NAME = main.c \
+		check_rdir_dollar.c \
+		dollar_quotes.c \
 		error_1.c \
 		error_2.c \
 		exec_cd.c \
@@ -24,6 +26,8 @@ SRC_NAME = main.c \
 		exec_non_btin.c \
 		exec_pwd.c \
 		exec_unset.c \
+		free_1.c \
+		free_2.c \
 		get_static.c \
 		init_cmd.c \
 		init_env.c \
@@ -31,13 +35,11 @@ SRC_NAME = main.c \
 		lexer_2.c \
 		lst_cmd.c \
 		lst_env.c \
+		lst_rdir.c \
 		parser_1.c \
 		pipe.c \
 		quit.c \
-		redirection.c \
-		free_1.c \
-		free_2.c \
-		dollar_quotes.c
+		redirection.c
 
 SRC_PATH = ./srcs
 SRC = $(addprefix $(SRC_PATH)/, $(SRC_NAME))

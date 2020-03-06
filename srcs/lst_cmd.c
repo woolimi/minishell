@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_cmd.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:53:05 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/05 13:51:02 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:05:41 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ t_cmd
 		new->has_path = 0;
 	new->in = NULL;
 	new->out = NULL;
-	new->out_dbl = NULL;
 	new->next = NULL;
 	return (new);
 }

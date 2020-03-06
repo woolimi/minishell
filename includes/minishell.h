@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 18:11:12 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/05 15:38:38 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:17:41 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,6 +101,13 @@ t_env		*lst_add_env(t_env *begin, char *key, char *value);
 t_env		*lst_new_env(char *key, char *value);
 
 /*
+**	lst_rdir
+*/
+
+t_rdir		*lst_last_rdir(t_rdir *begin);
+void		lst_add_redir_cmd(t_cmd *cmd, char *redir, char *file);
+
+/*
 **	exec command
 */
 
@@ -123,7 +130,7 @@ t_cmd		*piping(t_cmd *cmd);
 **	redirection
 */
 
-int			redirection(t_cmd *cmd);
+void		open_redirection(t_cmd *cmd);
 void		close_redirection(t_cmd *cmd);
 
 /*
@@ -152,6 +159,13 @@ int			jmp_quotes(char *line, int i);
 **	dollar_quotes.c
 */
 
-void		check_dollar(t_cmd *cmd);
+int			check_dollar(t_cmd *cmd);
+char		*check_quote(char *tk, int i);
+/*
+**	check_rdir_dollar.c
+*/
+
+int			check_inrdir_dollar(t_rdir *in);
+int			check_outrdir_dollar(t_rdir *in);
 
 #endif

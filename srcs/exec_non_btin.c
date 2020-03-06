@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_non_btin.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:53:52 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/05 15:38:08 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:14:43 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,14 +70,10 @@ void
 	exec_non_built_in(t_cmd *cmd)
 {
 	char	**path_arr;
-	char	*f[2];
 
-	check_dollar(cmd);
-	if (cmd->is_rdir)
-	{
-		if (!redirection(cmd))
-			exit(1);
-	}
+	if (!check_dollar(cmd))
+		exit(EXIT_FAILURE);
+	open_redirection(cmd);
 	if (!cmd->has_path)
 	{
 		path_arr = create_path_arr();

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_command.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:39:46 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/05 16:32:56 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/06 14:02:42 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ int
 	int ret;
 
 	ret = -1;
-	check_dollar(cmd);
-	if (!redirection(cmd))
-		return (0);
+	if (!check_dollar(cmd))
+		return (EXIT_FAILURE);
+	open_redirection(cmd);
 	if (btin_nb == 0)
 		ret = exec_echo(cmd);
 	else if (btin_nb == 1)

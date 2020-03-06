@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_cmd.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:47:07 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/05 15:02:32 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/06 13:46:15 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,33 +19,6 @@ static void
 
 	last = lst_last_cmd(cmd);
 	last->is_pipe = 1;
-}
-
-static void
-	lst_add_redir_cmd(t_cmd *cmd, char *redir, char *file)
-{
-	t_cmd *last;
-
-	last = lst_last_cmd(cmd);
-	last->is_rdir = 1;
-	if (ft_strequ(redir, "<"))
-	{
-		last->in = malloc(sizeof(t_rdir));
-		last->in->fd = -1;
-		last->in->file = ft_strdup(file);
-	}
-	else if (ft_strequ(redir, ">"))
-	{
-		last->out = malloc(sizeof(t_rdir));
-		last->out->fd = -1;
-		last->out->file = ft_strdup(file);
-	}
-	else if (ft_strequ(redir, ">>"))
-	{
-		last->out_dbl = malloc(sizeof(t_rdir));
-		last->out_dbl->fd = -1;
-		last->out_dbl->file = ft_strdup(file);
-	}
 }
 
 static int

@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 09:27:13 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 19:36:31 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/06 14:09:51 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 int
 	no_file_error(char *cmd, char *file, int ret)
 {
-	ft_putstr_fd("minishell: ", 2);
-	ft_putstr_fd(cmd, 2);
+	ft_putstr_fd("minishell", 2);
+	if (cmd)
+	{
+		ft_putstr_fd(": ", 2);
+		ft_putstr_fd(cmd, 2);
+	}
 	if (file)
 	{
 		ft_putstr_fd(": ", 2);
