@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:53:52 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/06 14:49:10 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/06 15:46:56 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ static void
 	int i;
 
 	i = 0;
-	if (path_arr[i])
 	while (path_arr[i])
 	{
 		free(path_arr[i]);
