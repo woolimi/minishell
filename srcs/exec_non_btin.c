@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:53:52 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/06 14:14:43 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/06 14:49:10 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ static void
 	int i;
 
 	i = 0;
+	if (path_arr[i])
 	while (path_arr[i])
 	{
 		free(path_arr[i]);
@@ -55,7 +56,7 @@ static void
 	int		i;
 
 	i = 0;
-	while (path_arr && path_arr[i])
+	while (path_arr[i])
 	{
 		path_cmd1 = ft_strjoin(path_arr[i], "/");
 		path_cmd2 = ft_strjoin(path_cmd1, cmd->argv[0]);
@@ -74,9 +75,8 @@ void
 	if (!check_dollar(cmd))
 		exit(EXIT_FAILURE);
 	open_redirection(cmd);
-	if (!cmd->has_path)
+	if (!cmd->has_path && (path_arr = create_path_arr()))
 	{
-		path_arr = create_path_arr();
 		exec_with_path(cmd, path_arr);
 		free_path_arr(path_arr);
 		exit(no_command_error(cmd->argv[0], 127));
