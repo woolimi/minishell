@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 12:53:49 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/07 13:04:45 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/07 13:58:33 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,8 @@ static int
 	i = 0;
 	while (env)
 	{
-		i++;
+		if (env->value)
+			i++;
 		env = env->next;
 	}
 	return (i);
@@ -39,14 +40,13 @@ char
 	while (env)
 	{
 		if (!env->value)
-			res[i] = ft_strjoin(env->key, "=");
-		else
 		{
-			tmp = ft_strjoin(env->key, "=");
-			res[i] = ft_strjoin(tmp, env->value);
-			free(tmp); 
+			env = env->next;
+			continue ;
 		}
-		i++;
+		tmp = ft_strjoin(env->key, "=");
+		res[i++] = ft_strjoin(tmp, env->value);
+		free(tmp);
 		env = env->next;
 	}
 	return (res);

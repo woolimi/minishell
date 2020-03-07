@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/07 13:42:25 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/07 13:59:56 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void
 		{
 			ft_putstr("\b\b  \n");
 			prompt_msg();
+			get_minish()->excode = 1;
 		}
 	}
 	else if (signo == SIGQUIT)
