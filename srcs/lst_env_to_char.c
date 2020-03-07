@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 12:53:49 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/07 13:58:33 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/07 14:58:02 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ char
 	char	*tmp;
 	int 	i;
 
-	if (!(res = malloc(sizeof(char*) * count_env(env))))
+	if (!(res = malloc(sizeof(char*) * count_env(env) + 1)))
 		return (NULL);
 	i = 0;
 	while (env)
@@ -49,5 +49,6 @@ char
 		free(tmp);
 		env = env->next;
 	}
+	res[i] = 0;
 	return (res);
 }
