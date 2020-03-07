@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/07 13:59:56 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/07 15:51:07 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void
 		}
 		else
 		{
-			ft_putstr("\b\b  \n");
+			ft_putstr("\b\b  \b\b\n");
 			prompt_msg();
 			get_minish()->excode = 1;
 		}
@@ -55,12 +55,19 @@ static int
 	minish = get_minish();
 	minish->line = 0;
 	ret = get_next_line(0, &(minish->line));
+	// printf("len : %zu\n", ft_strlen(minish->line));
 	if (ret == -1)
-		eof_exit();
-	if (ret == 0 && ft_strlen(minish->line))
+		fatal_error_exit();
+	if ((ret == 0 && ft_strlen(minish->line)))
+	{
+		// ft_putstr("  \b\b\b");
 		return (0);
+	}
 	if (ret == 0 && !ft_strlen(minish->line))
+	{
+		ft_putstr("here\n");
 		eof_exit();
+	}
 	minish->tokens = lexing(minish->line);
 	if (!minish->tokens)
 		fatal_error_exit();
