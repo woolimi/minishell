@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:37:02 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/07 13:42:02 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/07 17:46:53 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,3 @@ int	exec_export(t_cmd *cmd)
 		check_arg_and_export(cmd, i, &ret);
 	return (ret);
 }
-
-//export do 
-//unset do
-//export fo = ;

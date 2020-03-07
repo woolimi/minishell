@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lst_env_to_char.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/07 12:53:49 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/07 14:58:02 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/07 17:46:24 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,11 +28,11 @@ static int
 }
 
 char
-	**lst_env_to_char (t_env *env)
+	**lst_env_to_char(t_env *env)
 {
 	char	**res;
 	char	*tmp;
-	int 	i;
+	int		i;
 
 	if (!(res = malloc(sizeof(char*) * count_env(env) + 1)))
 		return (NULL);
