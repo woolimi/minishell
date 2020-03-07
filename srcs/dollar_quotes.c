@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:34 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/07 15:23:28 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/07 15:59:52 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ static int
 			buff[++*j] = *(++tk);
 		}
 	}
-	else if (*tk == '\\' && !quotes)
+	else if (*tk == '\\')
 	{
 		ret = 1;
 		buff[++*j] = *(++tk);
@@ -94,7 +94,7 @@ char
 	while (tk[++i])
 		if (tk[i] == '\'')
 			while (tk[++i] != '\'')
-				i += check_backslash(&tk[i], buff, &j, 0);
+				buff[++j] = tk[i];
 		else if (tk[i] == '\"')
 			while (tk[++i] != '\"')
 				if (tk[i] == '$')
