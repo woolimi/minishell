@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:18:22 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/07 12:22:14 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/07 14:02:46 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,7 @@ t_env
 
 	new = malloc(sizeof(t_env));
 	new->key = ft_strdup(key);
-	if (value)
-		new->value = ft_strdup(value);
+	new->value = ft_strdup(value);
 	new->next = NULL;
 	return (new);
 }
@@ -62,7 +61,8 @@ void
 			else
 				get_minish()->env = nxt;
 			free(now->key);
-			free(now->value);
+			if (now->value)
+				free(now->value);
 			free(now);
 			break ;
 		}
@@ -80,14 +80,12 @@ void
 	env = get_minish()->env;
 	while (env)
 	{
-		//ret = ft_strequ(env->key, key);
 		if (ft_strequ(env->key, key))
 		{
 			if (env->value && value)
-			{
 				free(env->value);
+			if (value)
 				env->value = ft_strdup(value);
-			}
 			return ;
 		}
 		last = env;
