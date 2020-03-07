@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 17:18:22 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/05 13:46:42 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/07 12:22:14 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,27 +75,23 @@ void
 	lst_check_and_add_env(char *key, char *value)
 {
 	t_env	*env;
-	int		ret;
+	t_env	*last;
 
 	env = get_minish()->env;
-	while (env->next)
+	while (env)
 	{
-		ret = ft_strequ(env->key, key);
+		//ret = ft_strequ(env->key, key);
 		if (ft_strequ(env->key, key))
 		{
-			if (env->value)
+			if (env->value && value)
+			{
 				free(env->value);
-			env->value = ft_strdup(value);
+				env->value = ft_strdup(value);
+			}
 			return ;
 		}
+		last = env;
 		env = env->next;
 	}
-	if (ft_strequ(env->key, key))
-	{
-		if (env->value)
-			free(env->value);
-		env->value = ft_strdup(value);
-		return ;
-	}
-	env->next = lst_new_env(key, value);
+	last->next = lst_new_env(key, value);
 }

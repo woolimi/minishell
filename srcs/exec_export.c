@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:37:02 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/05 13:43:29 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/07 12:10:04 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,22 @@
 /*
 ** args : { "export", "KEY1=value1", "KEY2=value2" }
 */
+
+static void
+	print_export(t_env *env)
+{
+	while (env)
+	{
+		ft_putstr(env->key);
+		if (env->value != NULL)
+		{
+			ft_putstr("=");
+			ft_putstr(env->value);
+		}
+		ft_putstr("\n");
+		env = env->next;
+	}
+}
 
 static int
 	idententifier_error(char *ident)
@@ -34,8 +50,9 @@ static void
 
 	end = 0;
 	copy = 1;
-	*ret = EXIT_SUCCESS;
-	if (ft_strchr(cmd->argv[i], '='))
+	if (cmd->argv[i][0] == '\0')
+		*ret = idententifier_error(cmd->argv[i]);
+	else if (ft_strchr(cmd->argv[i], '='))
 	{
 		if (cmd->argv[i][0] == '=' && !(copy = 0))
 			*ret = idententifier_error(cmd->argv[i]);
@@ -48,10 +65,11 @@ static void
 		if (copy)
 		{
 			cmd->argv[i][end] = '\0';
-			end++;
-			lst_check_and_add_env(cmd->argv[i], &cmd->argv[i][end]);
+			lst_check_and_add_env(cmd->argv[i], &cmd->argv[i][++end]);
 		}
 	}
+	else
+		lst_check_and_add_env(cmd->argv[i], NULL);
 }
 
 int	exec_export(t_cmd *cmd)
@@ -60,7 +78,14 @@ int	exec_export(t_cmd *cmd)
 	int ret;
 
 	i = 0;
+	ret = EXIT_SUCCESS;
+	if (!cmd->argv[1])
+		print_export(get_minish()->env);
 	while (cmd->argv[++i])
 		check_arg_and_export(cmd, i, &ret);
 	return (ret);
 }
+
+//export do 
+//unset do
+//export fo = ;

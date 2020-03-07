@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   exec_env.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:15:01 by wpark             #+#    #+#             */
-/*   Updated: 2020/02/24 18:53:39 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/07 11:34:15 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,13 @@ static void
 {
 	while (env)
 	{
-		ft_putstr(env->key);
-		ft_putstr("=");
-		ft_putstr(env->value);
-		ft_putstr("\n");
+		if (env->value != NULL)
+		{
+			ft_putstr(env->key);
+			ft_putstr("=");
+			ft_putstr(env->value);
+			ft_putstr("\n");
+		}
 		env = env->next;
 	}
 }
