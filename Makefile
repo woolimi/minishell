@@ -6,7 +6,7 @@
 #    By: wpark <wpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/03/06 15:41:48 by wpark            ###   ########.fr        #
+#    Updated: 2020/03/07 13:06:17 by wpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,6 +34,7 @@ SRC_NAME = main.c \
 		lexer_1.c \
 		lexer_2.c \
 		lst_cmd.c \
+		lst_env_to_char.c \
 		lst_env.c \
 		lst_rdir.c \
 		parser_1.c \

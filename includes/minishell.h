@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 18:11:12 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/07 11:29:24 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/07 13:04:38 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,11 +163,18 @@ int			jmp_quotes(char *line, int i);
 
 int			check_dollar(t_cmd *cmd);
 char		*check_quote(char *tk, int i);
+
 /*
 **	check_rdir_dollar.c
 */
 
 int			check_inrdir_dollar(t_rdir *in);
 int			check_outrdir_dollar(t_rdir *in);
+
+/*
+**	lst_env_to_char.c
+*/
+
+char		**lst_env_to_char(t_env *env);
 
 #endif
