@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:42 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/05 10:42:03 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/07 16:01:02 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ static int	count_params(char *line)
 			while (!ft_haschr(SEP_SPACE, line[i]) && line[i])
 			{
 				if ((i = jmp_quotes(line, i)) == -1)
+					return (0);
+				if (line[i] == '\\' && !line[i + 1])
 					return (0);
 				i++;
 			}

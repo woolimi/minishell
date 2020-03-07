@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:34 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/07 15:42:00 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/07 15:59:52 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ int
 	char	*old_arg;
 	int		i;
 
-	i = 0;
+	i = -1;
 	while (cmd->argv[++i])
 	{
 		old_arg = cmd->argv[i];

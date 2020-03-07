@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:34 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/05 13:55:56 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/07 15:55:59 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,10 @@ int
 			return (-1);
 		}
 	}
-	else if (line[i] == '\'' && (i == 0 || line[i - 1] != '\\'))
+	else if (line[i] == '\'')
 	{
 		i++;
-		while (check_backslash(line, &i, '\''))
+		while (line[i] != '\'' && line[i])
 			i++;
 		if (line[i] == '\0')
 		{
