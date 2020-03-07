@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/07 10:46:12 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/07 15:37:00 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/07 16:10:02 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void				ft_putendl_fd(char *s, int fd);
 void				ft_putnbr_fd(int n, int fd);
 char				conv_white_space(char c);
 
-#define BUFFER_SIZE 100
+#define BUFFER_SIZE 1
 
 typedef struct		s_cache
 {
