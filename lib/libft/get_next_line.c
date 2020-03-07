@@ -5,81 +5,86 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2020/02/15 01:47:57 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/06 14:25:40 by wpark            ###   ########.fr       */
+/*   Created: 2019/10/12 14:53:17 by froussel          #+#    #+#             */
+/*   Updated: 2020/03/07 15:13:35 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static ssize_t	pos_nl(char *s)
+static int
+	free_all(char **str)
 {
-	ssize_t i;
-
-	i = 0;
-	while (s && s[i] != '\0')
+	if (*str)
 	{
-		if (s[i] == '\n')
-			return (i);
-		i++;
+		free(*str);
+		*str = NULL;
 	}
 	return (-1);
 }
 
-static int		free_cache(char **cache, int ret)
+static int is_line(char *str)
 {
-	if (*cache)
-	{
-		free(*cache);
-		*cache = 0;
-	}
-	return (ret);
+	int i;
+
+	i = -1;
+	while (str[++i])
+		if (str[i] == '\n')
+			return (i);
+	return (-1);
 }
 
-static int		extract(char **line, char **cache, int idx)
+static int
+	give_line(char **str, char **line, int ret)
 {
-	char *tmp;
+	char *s;
+	int len;
 
-	if (idx >= 0)
+	s = NULL;
+	if (!*str || !**str)
 	{
-		if (!(*line = ft_strsub(*cache, 0, idx)))
-			return (free_cache(cache, -1));
-		if (!(tmp = ft_strsub(*cache, idx + 1, ft_strlen(*cache) - idx - 1)))
-			return (free_cache(cache, -1));
+		if (!(*line = ft_strdup("\0")))
+			return (free_all(str));
+	}
+	else if ((len = is_line(*str)) >= 0)
+	{
+		if (!(*line = ft_strsub(*str, 0, len)))
+			return (free_all(str));
+		if (!(s = ft_strsub(*str, len + 1, ft_strlen(*str) - len + 1)))
+			return (free_all(str));
+		ret = 1;
 	}
 	else
 	{
-		if (!(*line = ft_strsub(*cache, 0, ft_strlen(*cache))))
-			return (free_cache(cache, -1));
-		tmp = 0;
+		if (!(*line = ft_strsub(*str, 0, ft_strlen(*str))))
+			return (free_all(str));
 	}
-	free_cache(cache, 0);
-	*cache = tmp;
-	return (1);
+	free_all(str);
+	*str = s;
+	return (ret);
 }
 
-int				get_next_line(int fd, char **line)
+int
+	get_next_line(int fd, char **line)
 {
-	ssize_t		r_size;
-	char		buff[BS + 1];
-	static char	*cache;
-	char		*tmp;
+	static char *str = NULL;
+	char buff[BUFFER_SIZE + 1];
+	char *new_str;
+	ssize_t i;
 
-	if (fd < 0 || !line)
-		return (free_cache(&cache, -1));
-	while ((r_size = read(fd, buff, BS)) > 0)
+	if (!line || fd < 0)
+		return (free_all(&str));
+	while ((i = read(fd, buff, BUFFER_SIZE)) > 0)
 	{
-		buff[r_size] = '\0';
-		if (!(tmp = ft_strjoin(cache, buff)))
-			return (free_cache(&cache, -1));
-		free_cache(&cache, 0);
-		cache = tmp;
-		if (pos_nl(cache) != -1)
-			break ;
+		buff[i] = '\0';
+		if (!(new_str = ft_strjoin(str, buff)))
+			return (free_all(&str));
+		free_all(&str);
+		str = new_str;
+		if (is_line(str) >= 0)
+			break;
 	}
-	if (r_size < 0)
-		return (free_cache(&cache, -1));
-	if (r_size == 0 && (*line = ft_strdup(cache)))
-		return (0);
-	return (extract(line, &cache, pos_nl(cache)));
+	if (i < 0)
+		return (free_all(&str));
+	return (give_line(&str, line, 0));
 }
