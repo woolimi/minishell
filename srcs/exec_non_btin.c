@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:53:52 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/06 15:46:56 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/07 13:05:30 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ static void
 	{
 		path_cmd1 = ft_strjoin(path_arr[i], "/");
 		path_cmd2 = ft_strjoin(path_cmd1, cmd->argv[0]);
-		execve(path_cmd2, cmd->argv, NULL);
+		execve(path_cmd2, cmd->argv, lst_env_to_char(get_minish()->env));
 		free(path_cmd1);
 		free(path_cmd2);
 		i++;
@@ -82,7 +82,7 @@ void
 	}
 	else
 	{
-		execve(cmd->argv[0], cmd->argv, NULL);
+		execve(cmd->argv[0], cmd->argv, lst_env_to_char(get_minish()->env));
 		exit(no_file_error(cmd->argv[0], NULL, 1));
 	}
 }
