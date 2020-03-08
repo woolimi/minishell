@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/07 15:51:07 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/07 16:46:59 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,11 +55,12 @@ static int
 	minish = get_minish();
 	minish->line = 0;
 	ret = get_next_line(0, &(minish->line));
-	// printf("len : %zu\n", ft_strlen(minish->line));
+	//printf("len : %zu\n", ft_strlen(minish->line));
 	if (ret == -1)
 		fatal_error_exit();
 	if ((ret == 0 && ft_strlen(minish->line)))
 	{
+		printf("line=%s\n", minish->line);
 		// ft_putstr("  \b\b\b");
 		return (0);
 	}

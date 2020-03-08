@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
+/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/10/12 14:53:17 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/07 15:13:35 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/07 17:50:17 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ static int
 	return (-1);
 }
 
-static int is_line(char *str)
+static int
+	is_line(char *str)
 {
 	int i;
 
@@ -37,8 +38,8 @@ static int is_line(char *str)
 static int
 	give_line(char **str, char **line, int ret)
 {
-	char *s;
-	int len;
+	char	*s;
+	int		len;
 
 	s = NULL;
 	if (!*str || !**str)
@@ -67,10 +68,10 @@ static int
 int
 	get_next_line(int fd, char **line)
 {
-	static char *str = NULL;
-	char buff[BUFFER_SIZE + 1];
-	char *new_str;
-	ssize_t i;
+	static char	*str = NULL;
+	char		buff[BUFFER_SIZE + 1];
+	char		*new_str;
+	ssize_t		i;
 
 	if (!line || fd < 0)
 		return (free_all(&str));
@@ -82,7 +83,7 @@ int
 		free_all(&str);
 		str = new_str;
 		if (is_line(str) >= 0)
-			break;
+			break ;
 	}
 	if (i < 0)
 		return (free_all(&str));
