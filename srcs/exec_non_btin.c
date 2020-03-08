@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:53:52 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/07 14:58:18 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/08 18:57:59 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,10 +48,25 @@ static void
 }
 
 static void
+	free_tmp_env(char **env)
+{
+	int i;
+
+	i = 0;
+	if (env)
+	{
+		while (env[i])
+			free(env[i++]);
+		free(env);
+	}
+}
+
+static void
 	exec_with_path(t_cmd *cmd, char **path_arr)
 {
 	char	*path_cmd1;
 	char	*path_cmd2;
+	char	**tmp_env;
 	int		i;
 
 	i = 0;
@@ -59,7 +74,9 @@ static void
 	{
 		path_cmd1 = ft_strjoin(path_arr[i], "/");
 		path_cmd2 = ft_strjoin(path_cmd1, cmd->argv[0]);
-		execve(path_cmd2, cmd->argv, lst_env_to_char(get_minish()->env));
+		tmp_env = lst_env_to_char(get_minish()->env);
+		execve(path_cmd2, cmd->argv, tmp_env);
+		free_tmp_env(tmp_env);
 		free(path_cmd1);
 		free(path_cmd2);
 		i++;
