@@ -3,15 +3,15 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: wpark <wpark@student.42.fr>                +#+  +:+       +#+         #
+#    By: froussel <froussel@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/03/07 14:35:03 by wpark            ###   ########.fr        #
+#    Updated: 2020/03/08 18:09:13 by froussel         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 SRC_NAME = main.c \
 		check_rdir_dollar.c \
 		dollar_quotes.c \

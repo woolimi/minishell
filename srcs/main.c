@@ -6,7 +6,7 @@
 /*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/07 16:46:59 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/08 18:05:45 by froussel         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,25 +49,48 @@ void
 static int
 	read_line(void)
 {
-	int			ret;
+	static int	ret;
+	static int	eof;
+	char *bef_line;
+	char *new_line;
+	
 	t_minish	*minish;
 
 	minish = get_minish();
-	minish->line = 0;
-	ret = get_next_line(0, &(minish->line));
-	//printf("len : %zu\n", ft_strlen(minish->line));
-	if (ret == -1)
-		fatal_error_exit();
-	if ((ret == 0 && ft_strlen(minish->line)))
+	if (eof)
 	{
-		printf("line=%s\n", minish->line);
-		// ft_putstr("  \b\b\b");
-		return (0);
+		bef_line = minish->line;
+		new_line = 0;
+		ret = get_next_line(0, &new_line);
+		minish->line = ft_strjoin(bef_line, new_line);
+		free(bef_line);
+		free(new_line);
+		if (ret == -1)
+			fatal_error_exit();
+		if (ret > 0)
+			eof = 0; // 엔터를 쳤을 경우
+		if (ret == 0)
+		{
+			ft_putstr("  \b\b");
+			return (0);
+		}
 	}
-	if (ret == 0 && !ft_strlen(minish->line))
+	else // 이전 라인이 eof 가 아닌 경우
 	{
-		ft_putstr("here\n");
-		eof_exit();
+		ret = get_next_line(0, &(minish->line));
+		if (ret == -1)
+			fatal_error_exit();
+		if ((ret == 0 && ft_strlen(minish->line)))
+		{
+			eof = 1; 
+			ft_putstr("  \b\b");
+			return (0);
+		}
+		if (ret == 0 && !ft_strlen(minish->line))
+		{
+			ft_putstr("  \b\b");
+			eof_exit();
+		}
 	}
 	minish->tokens = lexing(minish->line);
 	if (!minish->tokens)
