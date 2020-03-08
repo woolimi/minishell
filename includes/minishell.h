@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 18:11:12 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/07 13:04:38 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/08 19:11:28 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -176,5 +176,11 @@ int			check_outrdir_dollar(t_rdir *in);
 */
 
 char		**lst_env_to_char(t_env *env);
+
+/*
+**	read_line.c 
+*/
+
+int read_line(void);
 
 #endif
