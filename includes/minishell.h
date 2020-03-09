@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 18:11:12 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/09 13:46:23 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/09 18:42:55 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,8 +32,6 @@
 # include <string.h>
 # include <errno.h>
 # include "struct.h"
-//debug
-#include <stdio.h>
 
 /*
 **	get static
@@ -88,7 +86,7 @@ void		free_line(void);
 **	lst_cmd
 */
 
-	int init_cmd_list(char **tokens);
+int			init_cmd_list(char **tokens);
 t_cmd		*lst_new_cmd(char *token);
 t_cmd		*lst_add_cmd(t_cmd *begin, char *token);
 t_cmd		*lst_last_cmd(t_cmd *cmd);
@@ -179,9 +177,9 @@ int			check_outrdir_dollar(t_rdir *in);
 char		**lst_env_to_char(t_env *env);
 
 /*
-**	read_line.c 
+**	read_line.c
 */
 
-int read_line(void);
+int			read_line(void);
 
 #endif

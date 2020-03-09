@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 19:00:17 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/09 14:59:00 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/09 18:44:15 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ static int
 	current_line_handle(void)
 {
 	t_minish	*minish;
-	
+
 	minish = get_minish();
 	minish->ret = get_next_line(0, &(minish->line));
 	if (minish->ret == -1)
