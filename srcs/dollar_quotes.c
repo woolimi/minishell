@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:34 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/07 15:59:52 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/09 19:12:02 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,8 +65,6 @@ static int
 		ret = 1;
 		if (ft_haschr("$\'\"\\", tk[1]))
 			buff[++*j] = *(++tk);
-		else if (ft_haschr(WHITE_SPACE, tk[1]))
-			buff[++*j] = conv_white_space(tk[1]);
 		else
 		{
 			buff[++*j] = *tk;
