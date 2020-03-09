@@ -6,12 +6,12 @@
 #    By: wpark <wpark@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2020/02/13 14:21:52 by froussel          #+#    #+#              #
-#    Updated: 2020/03/08 19:14:14 by wpark            ###   ########.fr        #
+#    Updated: 2020/03/09 13:51:24 by wpark            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = minishell
-FLAGS = -Wall -Wextra -Werror
+FLAGS = -Wall -Wextra -Werror -g3 -fsanitize=address
 SRC_NAME = main.c \
 		check_rdir_dollar.c \
 		dollar_quotes.c \

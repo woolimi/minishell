@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 18:11:12 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/08 19:11:28 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/09 13:46:23 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,13 @@ int			exec_echo(t_cmd *cmd);
 void		free_env(void);
 void		free_cmd(void);
 void		free_all(void);
+void		free_line(void);
 
 /*
 **	lst_cmd
 */
 
-int			init_cmd_list(char **tokens);
+	int init_cmd_list(char **tokens);
 t_cmd		*lst_new_cmd(char *token);
 t_cmd		*lst_add_cmd(t_cmd *begin, char *token);
 t_cmd		*lst_last_cmd(t_cmd *cmd);
