@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/12 13:29:00 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/08 19:00:42 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/09 15:18:15 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void
 	prompt_msg(void)
 {
-	if (!get_minish()->line)
+	if (get_minish()->eof == 0)
 		ft_putstr("\033[32mMINISHELL\033[0m$ ");
 }
 
@@ -32,6 +32,7 @@ void
 		else
 		{
 			ft_putstr("\b\b  \b\b\n");
+			get_minish()->eof = 0;
 			prompt_msg();
 			get_minish()->excode = 1;
 		}

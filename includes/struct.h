@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 19:44:45 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/06 14:00:02 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/09 13:54:59 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,8 @@ typedef struct		s_minish
 	t_cmd			*cmd;
 	int				executed;
 	int				excode;
+	int				eof;
+	int				ret;
 }					t_minish;
 
 #endif

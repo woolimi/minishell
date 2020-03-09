@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 16:36:09 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/06 13:56:40 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/09 14:39:16 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,15 +29,12 @@ static void
 	}
 }
 
-static void
+void
 	free_line(void)
 {
-	char *line;
-
-	line = get_minish()->line;
-	if (line)
-		free(line);
-	get_minish()->line = 0;
+	if (get_minish()->line)
+		free(get_minish()->line);
+	get_minish()->line = NULL;
 }
 
 static void

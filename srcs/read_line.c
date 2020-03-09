@@ -6,31 +6,32 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/03/08 19:00:17 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/08 19:13:58 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/09 14:59:00 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
 static int
-	previous_is_eof(int *ret, int *eof)
+	previous_is_eof(void)
 {
 	char		*bef_line;
 	char		*new_line;
 	t_minish	*minish;
 
 	minish = get_minish();
-	bef_line = minish->line;
 	new_line = 0;
-	if ((*ret = get_next_line(0, &new_line)) < 0)
+	if ((minish->ret = get_next_line(0, &new_line)) < 0)
 		fatal_error_exit();
+	bef_line = minish->eof ? minish->line : "";
 	if (!(minish->line = ft_strjoin(bef_line, new_line)))
 		fatal_error_exit();
-	free(bef_line);
+	if (minish->eof)
+		free(bef_line);
 	free(new_line);
-	if (*ret > 0)
-		*eof = 0;
-	if (*ret == 0)
+	if (minish->ret > 0)
+		minish->eof = 0;
+	if (minish->ret == 0)
 	{
 		ft_putstr("  \b\b");
 		return (0);
@@ -39,21 +40,21 @@ static int
 }
 
 static int
-	current_line_handle(int *ret, int *eof)
+	current_line_handle(void)
 {
 	t_minish	*minish;
 	
 	minish = get_minish();
-	*ret = get_next_line(0, &(minish->line));
-	if (*ret == -1)
+	minish->ret = get_next_line(0, &(minish->line));
+	if (minish->ret == -1)
 		fatal_error_exit();
-	if ((*ret == 0 && ft_strlen(minish->line)))
+	if ((minish->ret == 0 && ft_strlen(minish->line)))
 	{
-		*eof = 1;
+		minish->eof = 1;
 		ft_putstr("  \b\b");
 		return (0);
 	}
-	if (*ret == 0 && !ft_strlen(minish->line))
+	if (minish->ret == 0 && !ft_strlen(minish->line))
 	{
 		ft_putstr("  \b\b");
 		eof_exit();
@@ -64,19 +65,17 @@ static int
 int
 	read_line(void)
 {
-	static int	ret;
-	static int	eof;
 	t_minish	*minish;
 
 	minish = get_minish();
-	if (eof)
+	if (minish->eof)
 	{
-		if (!previous_is_eof(&ret, &eof))
+		if (!previous_is_eof())
 			return (0);
 	}
 	else
 	{
-		if (!current_line_handle(&ret, &eof))
+		if (!current_line_handle())
 			return (0);
 	}
 	minish->tokens = lexing(minish->line);
