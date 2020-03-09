@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: froussel <froussel@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/24 10:19:16 by wpark             #+#    #+#             */
-/*   Updated: 2020/03/05 13:40:11 by froussel         ###   ########.fr       */
+/*   Updated: 2020/03/09 21:20:43 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void
 	if (i > 0)
 		close(pipes[(i - 1) * 2]);
 	wait(&status);
+	get_exit_code(status, NO_EXCODE);
 }
 
 static void
