@@ -65,8 +65,6 @@ static int
 		ret = 1;
 		if (ft_haschr("$\'\"\\", tk[1]))
 			buff[++*j] = *(++tk);
-		else if (ft_haschr(WHITE_SPACE, tk[1]))
-			buff[++*j] = conv_white_space(tk[1]);
 		else
 		{
 			buff[++*j] = *tk;
