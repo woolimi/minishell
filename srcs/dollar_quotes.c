@@ -6,7 +6,7 @@
 /*   By: wpark <wpark@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/02/15 15:52:34 by froussel          #+#    #+#             */
-/*   Updated: 2020/03/09 19:12:02 by wpark            ###   ########.fr       */
+/*   Updated: 2020/03/10 12:42:05 by wpark            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -123,9 +123,9 @@ int
 		cmd->argv[i] = check_quote(cmd->argv[i], -1);
 		free(old_arg);
 	}
-	if (!check_inrdir_dollar(cmd->in))
-		return (0);
 	if (!check_outrdir_dollar(cmd->out))
+		return (0);
+	if (!check_inrdir_dollar(cmd->in))
 		return (0);
 	return (1);
 }
